@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Excel 常用函数速查表｜30 个高频函数 + 10 条避坑</title>
+<meta name="description" content="VLOOKUP、XLOOKUP、SUMIFS、IFERROR、TEXT、DATEDIF 等 30 个高频 Excel 函数写法与用途，附 10 条避坑提醒。">
+<style>
+  body { font-family: -apple-system,"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif; color:#1f2328; font-size:15px; line-height:1.7; margin:0; background:#f7f8fa; }
+  .nav { background:#fff; border-bottom:1px solid #e6e8eb; }
+  .nav-in { max-width:860px; margin:0 auto; padding:0 20px; height:56px; display:flex; align-items:center; justify-content:space-between; }
+  .brand { font-weight:700; text-decoration:none; color:#1f2328; }
+  .nav a { color:#59636e; text-decoration:none; font-size:14px; margin-left:18px; }
+  .main { max-width:860px; margin:0 auto; padding:32px 20px 60px; background:#fff; }
+  h1 { font-size: 26px; margin: 0 0 4px; color:#C05000; }
+  .sub { color:#59636e; font-size: 14px; margin-bottom: 22px; }
+  h2 { font-size: 17px; margin: 28px 0 8px; padding-left: 8px; border-left: 4px solid #E8722C; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 14px; }
+  th, td { border: 1px solid #e2e2e2; padding: 7px 9px; text-align: left; vertical-align: top; }
+  th { background: #FFF3E8; }
+  code { background:#f5f5f5; padding: 1px 4px; border-radius: 3px; font-family: Consolas, monospace; font-size: 13px; }
+  .tip { background:#FFF8EE; border:1px solid #F3C58E; padding:12px 14px; border-radius:8px; font-size:14px; }
+  .footer { margin-top:26px; color:#8a8f98; font-size:13px; border-top:1px solid #e6e8eb; padding-top:16px; }
+  .footer a { color:#0b6bcb; }
+  @media(max-width:600px){ table{font-size:12.5px} th,td{padding:5px 6px} }
+</style></head><body>
+<div class="nav"><div class="nav-in">
+  <a class="brand" href="./">文档代做</a>
+  <nav><a href="./">首页</a><a href="templates.html">模板包</a></nav>
+</div></div>
+<div class="main">
+<h1>Excel 常用函数速查表</h1>
+<div class="sub">30 个高频函数 + 10 条避坑提醒 ｜ 照抄就能用</div>
+
+<h2>一、查找匹配</h2>
+<table>
+<tr><th style="width:26%">函数</th><th style="width:32%">写法</th><th>用途</th></tr>
+<tr><td>VLOOKUP</td><td><code>=VLOOKUP(A2,表2!A:D,4,0)</code></td><td>按第一列查找，返回右侧第4列；最后一个参数必须写 0</td></tr>
+<tr><td>XLOOKUP</td><td><code>=XLOOKUP(A2,表2!A:A,表2!D:D,"未找到")</code></td><td>可向左查、可给默认值，新版 Excel/WPS 支持</td></tr>
+<tr><td>INDEX+MATCH</td><td><code>=INDEX(表2!D:D,MATCH(A2,表2!A:A,0))</code></td><td>老版本万能查找，不依赖列顺序</td></tr>
+<tr><td>MATCH</td><td><code>=MATCH(A2,表2!A:A,0)</code></td><td>返回查找值在区域中的行号</td></tr>
+</table>
+
+<h2>二、条件统计</h2>
+<table>
+<tr><th style="width:26%">函数</th><th style="width:32%">写法</th><th>用途</th></tr>
+<tr><td>SUMIFS</td><td><code>=SUMIFS(金额列,区域列,"华北",月份列,"11")</code></td><td>多条件求和</td></tr>
+<tr><td>COUNTIFS</td><td><code>=COUNTIFS(区域列,"华北",状态列,"已完成")</code></td><td>多条件计数</td></tr>
+<tr><td>COUNTIF</td><td><code>=COUNTIF(A:A,A2)</code></td><td>统计出现次数（找重复用这个）</td></tr>
+<tr><td>SUMIF</td><td><code>=SUMIF(A:A,"华北",C:C)</code></td><td>单条件求和</td></tr>
+</table>
+
+<h2>三、判断与容错</h2>
+<table>
+<tr><th style="width:26%">函数</th><th style="width:32%">写法</th><th>用途</th></tr>
+<tr><td>IF</td><td><code>=IF(A2&gt;=90,"优秀",IF(A2&gt;=60,"合格","不合格"))</code></td><td>多层判断从大到小写</td></tr>
+<tr><td>IFS</td><td><code>=IFS(A2&gt;=90,"优秀",A2&gt;=60,"合格",TRUE,"不合格")</code></td><td>多条件更清爽</td></tr>
+<tr><td>IFERROR</td><td><code>=IFERROR(VLOOKUP(...),"")</code></td><td>把 #N/A 变成空值</td></tr>
+<tr><td>AND / OR</td><td><code>=IF(AND(A2&gt;0,B2&lt;100),"正常","异常")</code></td><td>组合条件</td></tr>
+</table>
+
+<h2>四、文本处理</h2>
+<table>
+<tr><th style="width:26%">函数</th><th style="width:32%">写法</th><th>用途</th></tr>
+<tr><td>TRIM</td><td><code>=TRIM(A2)</code></td><td>去掉首尾空格（匹配失败先查这个）</td></tr>
+<tr><td>SUBSTITUTE</td><td><code>=SUBSTITUTE(A2," ","")</code></td><td>替换全部空格/字符</td></tr>
+<tr><td>LEFT / RIGHT / MID</td><td><code>=LEFT(A2,4)</code> <code>=MID(A2,3,2)</code></td><td>按位置截取</td></tr>
+<tr><td>TEXT</td><td><code>=TEXT(A2,"yyyy-mm-dd")</code></td><td>数字/日期转文本格式</td></tr>
+<tr><td>&amp; 连接</td><td><code>=A2&amp;"-"&amp;B2</code></td><td>拼接两列</td></tr>
+<tr><td>TEXTJOIN</td><td><code>=TEXTJOIN(",",TRUE,A2:A10)</code></td><td>多单元格合并成一个字符串</td></tr>
+</table>
+
+<h2>五、日期与时间</h2>
+<table>
+<tr><th style="width:26%">函数</th><th style="width:32%">写法</th><th>用途</th></tr>
+<tr><td>TODAY / NOW</td><td><code>=TODAY()</code></td><td>当天日期 / 当前时间</td></tr>
+<tr><td>DATEDIF</td><td><code>=DATEDIF(入职日,TODAY(),"Y")</code></td><td>算工龄/年龄（Y 年 M 月 D 日）</td></tr>
+<tr><td>EOMONTH</td><td><code>=EOMONTH(TODAY(),-1)+1</code></td><td>本月第一天 / 月末</td></tr>
+<tr><td>WORKDAY</td><td><code>=WORKDAY(A2,10)</code></td><td>10 个工作日后的日期</td></tr>
+</table>
+
+<h2>六、数字与取整</h2>
+<table>
+<tr><th style="width:26%">函数</th><th style="width:32%">写法</th><th>用途</th></tr>
+<tr><td>ROUND</td><td><code>=ROUND(A2,2)</code></td><td>四舍五入到 2 位</td></tr>
+<tr><td>ROUNDUP / ROUNDDOWN</td><td><code>=ROUNDUP(A2,0)</code></td><td>向上/向下取整</td></tr>
+<tr><td>INT</td><td><code>=INT(A2)</code></td><td>取整数部分</td></tr>
+<tr><td>MOD</td><td><code>=MOD(A2,2)</code></td><td>取余（判断奇偶）</td></tr>
+<tr><td>SUMPRODUCT</td><td><code>=SUMPRODUCT((A:A="华北")*(C:C))</code></td><td>条件求和另一写法</td></tr>
+</table>
+
+<h2>七、更多高频</h2>
+<table>
+<tr><th style="width:26%">函数</th><th style="width:32%">写法</th><th>用途</th></tr>
+<tr><td>UNIQUE</td><td><code>=UNIQUE(A2:A100)</code></td><td>去重出唯一值列表</td></tr>
+<tr><td>FILTER</td><td><code>=FILTER(A2:D100,C2:C100="华北")</code></td><td>按条件筛选出数据块</td></tr>
+<tr><td>SORT</td><td><code>=SORT(A2:D100,3,-1)</code></td><td>按第 3 列降序排</td></tr>
+<tr><td>LARGE / SMALL</td><td><code>=LARGE(C:C,3)</code></td><td>第 3 大的值</td></tr>
+<tr><td>RANK</td><td><code>=RANK(C2,C:C)</code></td><td>排名</td></tr>
+</table>
+
+<h2>八、10 条避坑提醒</h2>
+<div class="tip">
+1. 不要在数据区合并单元格——排序/筛选/透视表全会乱。<br>
+2. VLOOKUP 最后一定要写 0，否则是近似匹配。<br>
+3. 查找两边格式要一致（文本 vs 数字），否则全是 #N/A。<br>
+4. 区域记得加 $ 锁定，否则下拉后引用跑偏。<br>
+5. 匹配失败先查空格，用 TRIM 或 SUBSTITUTE。<br>
+6. 数据源第一行是标题，别把标题也选进区域。<br>
+7. 透视表源数据要「一列一字段」，别把多个信息塞一列。<br>
+8. 日期本质是数字，显示成文本说明格式错了。<br>
+9. 批量改格式用「分列」，比手改快 10 倍。<br>
+10. 重要文件先另存备份，再动公式。
+</div>
+
+<div class="footer">
+本速查表随《Excel 模板包》附赠 ｜ 需要代做表格？<a href="./">看这里</a> · <a href="templates.html">模板包</a>
+</div>
+</div>
+</body></html>
