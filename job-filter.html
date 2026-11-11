@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>公务员职位表筛选器｜在线筛省考职位表，按专业·学历·年限过滤，免费</title>
+<meta name="description" content="免费在线筛选公务员 / 事业单位职位表：上传 xlsx、xls 或 csv，自动识别表头，按专业关键词、学历学位、政治面貌、招考人数、基层工作年限组合过滤，命中结果可导出 xlsx / csv。数据只在浏览器里处理，不上传服务器。">
+<link rel="canonical" href="https://13302164608.github.io/docs-tools/job-filter.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="文档代做">
+<meta property="og:title" content="公务员职位表筛选器｜按专业·学历·年限在线筛职位表">
+<meta property="og:description" content="上传职位表 xlsx/xls/csv，自动识别表头，按专业关键词、学历学位、政治面貌、招考人数、基层年限组合筛选，结果可导出 xlsx/csv，文件不上传。">
+<meta property="og:url" content="https://13302164608.github.io/docs-tools/job-filter.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "公务员职位表筛选器（在线免费）",
+      "url": "https://13302164608.github.io/docs-tools/job-filter.html",
+      "description": "上传公务员或事业单位职位表（xlsx/xls/csv），按专业关键词、学历学位、政治面貌、招考人数、基层工作年限组合筛选，结果可导出 xlsx/csv。",
+      "applicationCategory": "Productivity",
+      "operatingSystem": "Any",
+      "browserRequirements": "现代浏览器（Chrome、Edge、Safari、Firefox）",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "featureList": [
+        "上传 xlsx / xls / csv 职位表",
+        "自动识别表头行（跳过标题与说明行）",
+        "文本包含 / 不包含（多关键词任一命中）",
+        "学历、学位、政治面貌精确匹配多选",
+        "招考人数、基层工作年限数值筛选",
+        "关键词排除（如排除限男性、需 2 年经历）",
+        "导出筛选结果为 xlsx / csv",
+        "文件本地处理，不上传"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "几千行的职位表能筛得动吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "能。几万行以内普通电脑浏览器都撑得住，解析和筛选都在本机完成，文件不上传。如果表特别大，建议先删掉用不到的列，或按地区拆成几个表分别筛。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "表头不在第一行怎么办？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "工具会自动识别表头行，常见的标题和说明行在前 2-4 行。如果识别错了，在「表头在第几行」下拉里手动改一下，列名和筛选条件会跟着刷新。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "支持 .xls 和 .csv 吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "支持 .xlsx、.xls 和 .csv。读 .xlsx/.xls 需要联网加载一次表格解析库（约 900KB，之后浏览器会缓存）；.csv 不依赖这个库，断网也能筛。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "筛出来的岗位能直接拿来报名吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不能，筛选只是按你给的条件过滤行，资格审核以官方公告和职位表原文为准。建议导出结果后，用职位代码回官方职位表复核一遍专业、学历和备注条件。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+:root{--ink:#1f2328;--sub:#59636e;--line:#e6e8eb;--accent:#0b6bcb;--bg:#f7f8fa;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:9}
+.nav{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{font-weight:700;font-size:16px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.nav nav{display:flex;gap:16px;flex-wrap:wrap}
+.nav a{color:var(--sub);text-decoration:none;font-size:14px}
+.nav a:hover{color:var(--accent)}
+main{padding:32px 0 10px}
+h1{font-size:28px;margin:0 0 8px;letter-spacing:-.4px}
+.lead{color:var(--sub);font-size:15px;margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+h2{font-size:19px;margin:36px 0 10px}
+h3{font-size:15.5px;margin:22px 0 6px}
+p{font-size:15px}
+.drop{border:2px dashed #c9d3de;border-radius:12px;background:#fff;text-align:center;padding:24px 16px;cursor:pointer;transition:.15s}
+.drop.over{border-color:var(--accent);background:#eef5fd}
+.drop p{margin:0;font-size:14.5px;color:var(--sub)}
+.drop strong{color:var(--ink)}
+.hint{font-size:13px;color:#7a838d;margin-top:6px}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;text-decoration:none;padding:8px 16px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.btn:hover{filter:brightness(.93)}
+.btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+.btn.small{padding:4px 10px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.row{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;font-size:14px;color:var(--sub);margin-top:10px}
+.row select,.row input[type=text],.row input[type=number]{font:inherit;font-size:14px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)}
+.row input[type=text]{min-width:220px;flex:1}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-size:13px;background:#fff;cursor:pointer;color:var(--sub)}
+.chip input{margin:0}
+.chip.on{border-color:var(--accent);color:var(--accent);background:#eef5fd}
+.cond{border:1px solid var(--line);border-radius:10px;padding:12px;margin-top:10px;background:#fcfdfe}
+.cond .head{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.cond .head .del{margin-left:auto}
+.vals{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;max-height:150px;overflow:auto;padding:2px}
+.muted{font-size:13px;color:#7a838d}
+.status{font-size:14px;color:var(--sub);margin:12px 0 0;min-height:22px}
+.status.err{color:#b42318}
+.status.ok{color:#0a7a3d}
+.tbl-wrap{overflow:auto;max-height:520px;border:1px solid var(--line);border-radius:10px;margin-top:12px;background:#fff}
+table{border-collapse:collapse;font-size:13px;width:100%}
+th,td{padding:7px 9px;text-align:left;border-bottom:1px solid var(--line);border-right:1px solid #f0f2f5;white-space:nowrap;max-width:320px;overflow:hidden;text-overflow:ellipsis}
+th{background:#f0f3f7;font-weight:600;position:sticky;top:0;z-index:1}
+tr:last-child td{border-bottom:none}
+.summary{font-size:15px;margin-top:12px}
+.summary b{color:var(--accent);font-size:18px}
+.note{background:#fff;border-left:3px solid var(--accent);padding:14px 16px;border-radius:6px;font-size:14px;color:var(--sub);margin:18px 0}
+.warn{background:#fff8f0;border-left:3px solid #d97706;padding:14px 16px;border-radius:6px;font-size:14px;color:#7a4a12;margin:18px 0}
+.related{font-size:14px;color:var(--sub);margin-top:26px}
+.related a{color:var(--accent);text-decoration:none;margin-right:14px}
+.cta-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin:30px 0 0}
+.cta-box p{margin:0 0 12px;color:var(--sub);font-size:14.5px}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:11px 22px;border-radius:8px;font-weight:600;font-size:15px}
+footer{border-top:1px solid var(--line);margin-top:44px;padding:24px 0 40px;color:var(--sub);font-size:13px}
+footer a{color:var(--sub)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.lib-err{background:#fff8f0;border:1px solid #f3c58e;color:#7a4a12;border-radius:8px;padding:10px 14px;font-size:14px;margin-top:12px}
+@media(max-width:600px){h1{font-size:22px}.nav nav{gap:12px}.nav a{font-size:12.5px}.brand{font-size:15px}.row input[type=text]{min-width:0;width:100%}table{font-size:12px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="./">文档代做</a>
+  <nav><a href="./">首页</a><a href="templates.html">模板包</a><a href="index.html#free-tools">免费工具</a><a href="tools.html">Excel 速查</a></nav>
+</div></header>
+
+<main class="wrap">
+  <h1>公务员职位表筛选器（在线免费）</h1>
+  <p class="lead">上传省考 / 事业单位职位表，按专业、学历、政治面貌、招考人数、基层工作年限组合筛选，几秒出结果，命中行可以直接导出。<strong>文件只在你浏览器里解析，不上传服务器。</strong></p>
+
+  <div class="drop" id="drop" tabindex="0" role="button">
+    <p><strong>点击选择职位表</strong>，或把文件拖到这里</p>
+    <p class="hint">支持 .xlsx / .xls / .csv，自动识别表头行；上传后出现筛选条件</p>
+    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel,text/csv" class="sr" aria-label="选择职位表文件">
+  </div>
+  <div class="lib-err" id="libErr" style="display:none"></div>
+
+  <div class="card" id="setupCard" style="margin-top:14px;display:none">
+    <div class="row">
+      <label>表头在第 <select id="headerRowSel" aria-label="表头所在行"></select> 行</label>
+      <span class="muted" id="sheetInfo"></span>
+      <button class="btn ghost small" id="redetectBtn" type="button">重新识别表头</button>
+    </div>
+    <div class="row" style="align-items:flex-start">
+      <span style="padding-top:4px">结果里显示的列：</span>
+      <div class="chips" id="colPicker"></div>
+    </div>
+  </div>
+
+  <div class="card" id="filterCard" style="margin-top:14px;display:none">
+    <h2 style="margin:0 0 4px;font-size:17px">筛选条件（同时满足）</h2>
+
+    <div class="cond">
+      <div class="head">
+        <strong style="font-size:14px">① 文本条件（专业 / 其他条件 / 备注）</strong>
+        <select id="textMode" aria-label="文本条件模式">
+          <option value="contains">包含以下任一关键词</option>
+          <option value="excludes">不包含以下任一关键词</option>
+        </select>
+      </div>
+      <div class="row"><input type="text" id="textKeywords" placeholder="多个关键词用空格分隔，例如：计算机 软件 电子信息"></div>
+      <div class="muted" style="margin-top:6px">在哪些列里找（不选＝所有列）：</div>
+      <div class="chips" id="textCols"></div>
+    </div>
+
+    <div class="cond">
+      <div class="head">
+        <strong style="font-size:14px">② 精确匹配（学历 / 学位 / 政治面貌）</strong>
+        <button class="btn ghost small" id="addExactBtn" type="button">+ 加一条</button>
+      </div>
+      <div id="exactList"></div>
+      <div class="muted" style="margin-top:6px">精确匹配要求单元格内容与选项完全一致（如「本科」不会命中「本科及以上」）。</div>
+    </div>
+
+    <div class="cond">
+      <div class="head">
+        <strong style="font-size:14px">③ 数值条件（招考人数 / 基层工作年限）</strong>
+        <button class="btn ghost small" id="addNumBtn" type="button">+ 加一条</button>
+      </div>
+      <div id="numList"></div>
+      <div class="muted" style="margin-top:6px">单元格里带文字也能取数：如「2年」按 2 处理，「无限制」视为无数据、不命中数值条件。</div>
+    </div>
+
+    <div class="cond">
+      <div class="head">
+        <strong style="font-size:14px">④ 关键词排除</strong>
+      </div>
+      <div class="row"><input type="text" id="excludeKeywords" placeholder="命中这些词的岗位直接排除，例如：限男性 需2年 定向 服务基层"></div>
+      <div class="muted" style="margin-top:6px">在哪些列里找（不选＝所有列）：</div>
+      <div class="chips" id="excludeCols"></div>
+    </div>
+
+    <div class="row" style="margin-top:14px">
+      <button class="btn" id="runBtn" type="button">开始筛选</button>
+      <button class="btn ghost" id="resetBtn" type="button">清空条件</button>
+      <button class="btn ghost" id="clearFileBtn" type="button">换一个文件</button>
+    </div>
+    <p class="status" id="status" aria-live="polite"></p>
+  </div>
+
+  <div class="card" id="resultCard" style="margin-top:14px;display:none">
+    <div class="summary" id="summary"></div>
+    <div class="row">
+      <button class="btn" id="exportXlsxBtn" type="button">导出 Excel（.xlsx）</button>
+      <button class="btn ghost" id="exportCsvBtn" type="button">导出 CSV</button>
+      <span class="muted">预览最多 200 行，导出包含全部命中行</span>
+    </div>
+    <div class="tbl-wrap" id="previewWrap"></div>
+  </div>
+
+  <div class="warn">筛选结果<strong>仅供参考，以官方职位表与公告为准</strong>。报名前请用职位代码回官方表格核对专业、学历、基层年限等硬性条件。</div>
+  <div class="note">数据只在你的浏览器里处理：页面没有上传接口，职位表不会离开你的电脑。第一次读 .xlsx/.xls 需要联网加载表格解析库（约 900KB，之后浏览器缓存）；.csv 不依赖它，断网也能筛。</div>
+
+  <h2>怎么用（4 步）</h2>
+  <p>① 上传职位表；② 确认表头行（自动识别，识别错了手动改）；③ 填条件——专业用文本条件（多个关键词空格分隔，任一命中即可），学历/学位/政治面貌用精确匹配，招考人数/基层年限用数值条件，再把「限男性」「需2年」这类直接排除；④ 点开始筛选，看命中行数，导出 xlsx 或 csv 再自己核对。</p>
+
+  <h2>筛选逻辑的事实说明</h2>
+  <p>所有条件之间是「同时满足」：文本条件按子串包含匹配（不区分大小写），精确匹配要求单元格与选项完全一致，数值条件会把单元格里的第一个数字取出来比较（「2年」按 2）。专业名称在职位表里写法不统一（「计算机类」和「计算机科学与技术」是两个词），所以文本条件用空格分隔多个关键词，命中任意一个即通过。</p>
+
+  <h2>如果结果为空怎么办</h2>
+  <p>先看是不是条件太紧：把专业关键词换成更短的上位词（如「计算机」而不是「计算机应用技术」），去掉一到两条限制再试；学历的精确匹配改成「包含」思路（用文本条件搜「本科」）；确认表头行有没有选错，导致列名和你的预期不一致。仍然为空，可能这批岗位确实没有符合的组合。</p>
+
+  <h2>常见问题</h2>
+  <h2>几千行的职位表能筛得动吗？</h2>
+  <p>能。几万行以内普通电脑浏览器都撑得住，解析和筛选都在本机完成，文件不上传。如果表特别大，建议先删掉用不到的列，或按地区拆成几个表分别筛。</p>
+
+  <h2>表头不在第一行怎么办？</h2>
+  <p>工具会自动识别表头行，常见的标题和说明行在前 2-4 行。如果识别错了，在「表头在第几行」下拉里手动改一下，列名和筛选条件会跟着刷新。</p>
+
+  <h2>支持 .xls 和 .csv 吗？</h2>
+  <p>支持 .xlsx、.xls 和 .csv。读 .xlsx/.xls 需要联网加载一次表格解析库（约 900KB，之后浏览器会缓存）；.csv 不依赖这个库，断网也能筛。</p>
+
+  <h2>筛出来的岗位能直接拿来报名吗？</h2>
+  <p>不能，筛选只是按你给的条件过滤行，资格审核以官方公告和职位表原文为准。建议导出结果后，用职位代码回官方职位表复核一遍专业、学历和备注条件。</p>
+
+  <div class="related">相关免费工具：<a href="id-photo.html">证件照制作</a><a href="compress.html">图片批量压缩</a><a href="pdf-merge.html">PDF 合并</a><a href="csv-json.html">CSV ⇄ JSON</a><a href="char-count.html">字数统计</a><a href="index.html#free-tools">全部工具</a></div>
+
+  <div class="cta-box">
+    <p>岗位太多、条件看不懂、报名材料要整理成一份？这些活可以交给我做。</p>
+    <a class="cta" href="./index.html">需要帮你筛岗/整理材料？看服务与价格</a>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>文档代做 · 当天交付 ｜ <a href="./index.html">首页</a> · <a href="templates.html">模板包</a> · <a href="tools.html">Excel 速查</a></p>
+  <p>免费工具：<a href="id-photo.html">证件照</a> · <a href="compress.html">图片压缩</a> · <a href="pdf-merge.html">PDF 合并</a> · <a href="csv-json.html">CSV ⇄ JSON</a> · <a href="char-count.html">字数统计</a></p>
+  <p>翔宇众成（天津）科技发展有限公司</p>
+</footer>
+
+<script>
+'use strict';
+/* ================== 依赖：SheetJS（唯一外部库） ================== */
+var XLSX_URLS = [
+  'https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js',
+  'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js'
+];
+var lib = { ready: !!window.XLSX, error: null };
+function loadXlsx(i) {
+  return new Promise(function (resolve, reject) {
+    if (window.XLSX) return resolve();
+    if (i >= XLSX_URLS.length) return reject(new Error('表格解析库加载失败'));
+    var s = document.createElement('script');
+    s.src = XLSX_URLS[i];
+    s.async = true;
+    s.onload = function () { window.XLSX ? resolve() : loadXlsx(i + 1).then(resolve, reject); };
+    s.onerror = function () { loadXlsx(i + 1).then(resolve, reject); };
+    document.head.appendChild(s);
+  });
+}
+
+/* ================== 纯函数（便于自检） ================== */
+var HEADER_KEYS = ['职位代码', '职位名称', '招录机关', '部门', '用人司局', '专业', '学历', '学位', '政治面貌', '基层工作年限', '招考人数', '其他条件', '岗位', '人数', '备注', '单位', '地区', '职位'];
+
+/* 表头行自动识别：非空单元格多、命中常见列名多、长句子少的那一行 */
+function detectHeaderRow(rows) {
+  var best = 0, bestScore = -Infinity;
+  var limit = Math.min(rows.length, 10);
+  for (var i = 0; i < limit; i++) {
+    var r = rows[i] || [];
+    var cells = r.map(function (v) { return String(v == null ? '' : v).trim(); }).filter(Boolean);
+    if (cells.length < 2) continue;
+    var score = cells.length;
+    for (var c = 0; c < cells.length; c++) {
+      for (var k = 0; k < HEADER_KEYS.length; k++) {
+        if (cells[c].indexOf(HEADER_KEYS[k]) >= 0) { score += 5; break; }
+      }
+    }
+    for (var j = 0; j < cells.length; j++) if (cells[j].length > 40) score -= 3;
+    score -= i * 0.1;
+    if (score > bestScore) { bestScore = score; best = i; }
+  }
+  return best;
+}
+
+/* 统一列名：去空、去重、补列号 */
+function buildColumns(headerCells) {
+  var used = {}, cols = [];
+  headerCells.forEach(function (h, idx) {
+    var name = String(h == null ? '' : h).trim() || ('列' + (idx + 1));
+    var base = name, n = 1;
+    while (Object.prototype.hasOwnProperty.call(used, name)) { n++; name = base + '_' + n; }
+    used[name] = true;
+    cols.push(name);
+  });
+  return cols;
+}
+
+/* 二维数组 → 行对象数组 */
+function toRecords(rows, headerRowIndex) {
+  var header = rows[headerRowIndex] || [];
+  var cols = buildColumns(header);
+  var data = [];
+  for (var i = headerRowIndex + 1; i < rows.length; i++) {
+    var r = rows[i] || [];
+    var hasValue = r.some(function (v) { return String(v == null ? '' : v).trim() !== ''; });
+    if (!hasValue) continue;
+    var obj = {};
+    for (var c = 0; c < cols.length; c++) {
+      var v = r[c];
+      obj[cols[c]] = (v == null) ? '' : v;
+    }
+    data.push(obj);
+  }
+  return { columns: cols, records: data };
+}
+
+function splitKeywords(text) {
+  return String(text || '').split(/[\s,，、;；]+/).filter(Boolean).map(function (s) { return s.toLowerCase(); });
+}
+function cellText(rec, col) {
+  return String(rec[col] == null ? '' : rec[col]).trim();
+}
+function parseNum(v) {
+  var m = String(v == null ? '' : v).match(/-?\d+(?:\.\d+)?/);
+  return m ? parseFloat(m[0]) : NaN;
+}
+
+/* filters = { include:{keywords, columns, mode}, exclude:{keywords, columns}, exact:[{column, values}], numeric:[{column, op, value}] } */
+function applyFilters(records, filters) {
+  filters = filters || {};
+  var inc = filters.include || {};
+  var exc = filters.exclude || {};
+  var incKws = splitKeywords(inc.keywords);
+  var excKws = splitKeywords(exc.keywords);
+  var incCols = (inc.columns && inc.columns.length) ? inc.columns : null;
+  var excCols = (exc.columns && exc.columns.length) ? exc.columns : null;
+  var exact = filters.exact || [];
+  var numeric = filters.numeric || [];
+
+  return records.filter(function (rec) {
+    var allCols = Object.keys(rec);
+    /* ① 文本条件 */
+    if (incKws.length) {
+      var cols = incCols || allCols;
+      var hit = false;
+      for (var i = 0; i < cols.length && !hit; i++) {
+        var val = cellText(rec, cols[i]).toLowerCase();
+        for (var k = 0; k < incKws.length; k++) {
+          if (val.indexOf(incKws[k]) >= 0) { hit = true; break; }
+        }
+      }
+      if (inc.mode === 'excludes') { if (hit) return false; }
+      else if (!hit) return false;
+    }
+    /* ④ 关键词排除 */
+    if (excKws.length) {
+      var exCols = excCols || allCols;
+      for (var e = 0; e < exCols.length; e++) {
+        var ev = cellText(rec, exCols[e]).toLowerCase();
+        for (var ek = 0; ek < excKws.length; ek++) {
+          if (ev.indexOf(excKws[ek]) >= 0) return false;
+        }
+      }
+    }
+    /* ② 精确匹配 */
+    for (var x = 0; x < exact.length; x++) {
+      var cond = exact[x];
+      if (!cond || !cond.column || !cond.values || !cond.values.length) continue;
+      var cell = cellText(rec, cond.column);
+      if (cond.values.indexOf(cell) < 0) return false;
+    }
+    /* ③ 数值条件 */
+    for (var n = 0; n < numeric.length; n++) {
+      var nc = numeric[n];
+      if (!nc || !nc.column || nc.value === '' || nc.value == null) continue;
+      var target = Number(nc.value);
+      if (!isFinite(target)) continue;
+      var num = parseNum(rec[nc.column]);
+      if (!isFinite(num)) return false;
+      if (nc.op === '>=' && !(num >= target)) return false;
+      if (nc.op === '<=' && !(num <= target)) return false;
+    }
+    return true;
+  });
+}
+
+/* 极简 CSV 解析（SheetJS 加载失败时的降级路径） */
+function parseCsvText(text) {
+  text = String(text == null ? '' : text).replace(/^\uFEFF/, '');
+  var rows = [], row = [], field = '', inQuotes = false, i = 0;
+  while (i < text.length) {
+    var ch = text[i];
+    if (inQuotes) {
+      if (ch === '"') {
+        if (text[i + 1] === '"') { field += '"'; i += 2; continue; }
+        inQuotes = false; i++; continue;
+      }
+      field += ch; i++; continue;
+    }
+    if (ch === '"') { inQuotes = true; i++; continue; }
+    if (ch === ',' || ch === '\t') { row.push(field); field = ''; i++; continue; }
+    if (ch === '\r' || ch === '\n') {
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+      row.push(field); field = '';
+      rows.push(row); row = [];
+      i++; continue;
+    }
+    field += ch; i++;
+  }
+  if (field !== '' || row.length) { row.push(field); rows.push(row); }
+  return rows.filter(function (r) { return r.some(function (v) { return String(v).trim() !== ''; }); });
+}
+
+/* 导出：CSV 文本（带 BOM） */
+function recordsToCsv(columns, records) {
+  function esc(v) {
+    var s = v == null ? '' : String(v);
+    if (/[",\r\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  }
+  var lines = [columns.map(esc).join(',')];
+  records.forEach(function (rec) {
+    lines.push(columns.map(function (c) { return esc(rec[c]); }).join(','));
+  });
+  return '\uFEFF' + lines.join('\r\n');
+}
+
+/* ================== 界面 ================== */
+var drop = document.getElementById('drop');
+var fileInput = document.getElementById('fileInput');
+var libErr = document.getElementById('libErr');
+var setupCard = document.getElementById('setupCard');
+var filterCard = document.getElementById('filterCard');
+var resultCard = document.getElementById('resultCard');
+var headerRowSel = document.getElementById('headerRowSel');
+var sheetInfo = document.getElementById('sheetInfo');
+var redetectBtn = document.getElementById('redetectBtn');
+var colPicker = document.getElementById('colPicker');
+var textMode = document.getElementById('textMode');
+var textKeywords = document.getElementById('textKeywords');
+var textCols = document.getElementById('textCols');
+var excludeKeywords = document.getElementById('excludeKeywords');
+var excludeCols = document.getElementById('excludeCols');
+var exactList = document.getElementById('exactList');
+var numList = document.getElementById('numList');
+var addExactBtn = document.getElementById('addExactBtn');
+var addNumBtn = document.getElementById('addNumBtn');
+var runBtn = document.getElementById('runBtn');
+var resetBtn = document.getElementById('resetBtn');
+var clearFileBtn = document.getElementById('clearFileBtn');
+var statusEl = document.getElementById('status');
+var summaryEl = document.getElementById('summary');
+var previewWrap = document.getElementById('previewWrap');
+var exportXlsxBtn = document.getElementById('exportXlsxBtn');
+var exportCsvBtn = document.getElementById('exportCsvBtn');
+
+var state = {
+  fileName: '',
+  rows: [],
+  headerRowIndex: 0,
+  columns: [],
+  records: [],
+  visibleCols: [],
+  matched: [],
+  matchedFilters: null
+};
+
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className = 'status' + (kind ? ' ' + kind : '');
+}
+
+/* ---------- 读文件 ---------- */
+function readFile(file) {
+  var name = file.name || '';
+  setStatus('正在读取 ' + name + ' …');
+  if (/\.csv$/i.test(name) || file.type === 'text/csv') {
+    var reader = new FileReader();
+    reader.onload = function () {
+      try {
+        var rows = parseCsvText(reader.result);
+        if (!rows.length) throw new Error('没有解析到数据');
+        loadRows(rows, name, 'CSV');
+      } catch (e) { setStatus('读取失败：' + e.message, 'err'); }
+    };
+    reader.onerror = function () { setStatus('读取文件失败。', 'err'); };
+    reader.readAsText(file, 'UTF-8');
+    return;
+  }
+  if (!/\.(xlsx|xls)$/i.test(name) && file.type.indexOf('sheet') < 0 && file.type.indexOf('excel') < 0) {
+    setStatus('只支持 .xlsx / .xls / .csv 文件。', 'err');
+    return;
+  }
+  if (!window.XLSX) {
+    setStatus('读 .xlsx/.xls 需要联网加载表格解析库，正在加载…');
+    loadXlsx(0).then(function () { lib.ready = true; libErr.style.display = 'none'; readFile(file); })
+      .catch(function () { showLibError(); });
+    return;
+  }
+  var fr = new FileReader();
+  fr.onload = function () {
+    try {
+      var wb = window.XLSX.read(new Uint8Array(fr.result), { type: 'array' });
+      var ws = wb.Sheets[wb.SheetNames[0]];
+      var aoa = window.XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: '' });
+      loadRows(aoa, name, wb.SheetNames[0]);
+    } catch (e) {
+      setStatus('解析 Excel 失败：' + (e && e.message) + '（文件可能是加密的或格式异常）', 'err');
+    }
+  };
+  fr.onerror = function () { setStatus('读取文件失败。', 'err'); };
+  fr.readAsArrayBuffer(file);
+}
+
+function showLibError() {
+  lib.error = true;
+  libErr.style.display = 'block';
+  libErr.innerHTML = '⚠️ 表格解析库没能加载（需要联网一次）。<br>' +
+    '· <strong>.csv 仍然可以正常筛选和导出</strong>（不依赖该库）；<br>' +
+    '· .xlsx/.xls 需要联网后刷新页面，或先把表格在 Excel 里「另存为 CSV UTF-8」再上传；<br>' +
+    '· 你的文件没有上传，失败发生在下载解析库这一步。';
+  setStatus('表格解析库加载失败，已降级：可用 CSV。', 'err');
+  exportXlsxBtn.disabled = true;
+}
+
+/* ---------- 加载数据到界面 ---------- */
+function loadRows(rows, fileName, sheetName) {
+  state.fileName = fileName;
+  state.rows = rows;
+  state.headerRowIndex = detectHeaderRow(rows);
+  sheetInfo.textContent = fileName + (sheetName ? '（工作表：' + sheetName + '）' : '');
+  setupCard.style.display = 'block';
+  filterCard.style.display = 'block';
+  fillHeaderRowOptions();
+  rebuildFromHeader();
+  setStatus('已读取 ' + rows.length + ' 行，自动识别表头在第 ' + (state.headerRowIndex + 1) + ' 行。确认列名后填条件。', 'ok');
+}
+
+function fillHeaderRowOptions() {
+  headerRowSel.innerHTML = '';
+  var max = Math.min(state.rows.length, 12);
+  for (var i = 1; i <= max; i++) {
+    var opt = document.createElement('option');
+    opt.value = String(i - 1);
+    opt.textContent = String(i);
+    if (i - 1 === state.headerRowIndex) opt.selected = true;
+    headerRowSel.appendChild(opt);
+  }
+}
+
+function rebuildFromHeader() {
+  var built = toRecords(state.rows, state.headerRowIndex);
+  state.columns = built.columns;
+  state.records = built.records;
+  state.visibleCols = built.columns.slice(0, Math.min(built.columns.length, 8));
+  buildColPicker();
+  buildColumnChips(textCols, 'textCols');
+  buildColumnChips(excludeCols, 'excludeCols');
+  rebuildConditionSelects();
+  resultCard.style.display = 'none';
+  summaryEl.textContent = '';
+  previewWrap.innerHTML = '';
+}
+
+function buildColPicker() {
+  colPicker.innerHTML = '';
+  state.columns.forEach(function (name) {
+    var label = document.createElement('label');
+    label.className = 'chip' + (state.visibleCols.indexOf(name) >= 0 ? ' on' : '');
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.checked = state.visibleCols.indexOf(name) >= 0;
+    cb.addEventListener('change', function () {
+      if (cb.checked) { if (state.visibleCols.indexOf(name) < 0) state.visibleCols.push(name); }
+      else state.visibleCols = state.visibleCols.filter(function (c) { return c !== name; });
+      label.classList.toggle('on', cb.checked);
+    });
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(name));
+    colPicker.appendChild(label);
+  });
+}
+
+function buildColumnChips(container, kind) {
+  container.innerHTML = '';
+  state.columns.forEach(function (name) {
+    var label = document.createElement('label');
+    label.className = 'chip';
+    var cb = document.createElement('input');
+    cb.type = 'checkbox';
+    cb.setAttribute('data-kind', kind);
+    cb.value = name;
+    cb.addEventListener('change', function () { label.classList.toggle('on', cb.checked); });
+    label.appendChild(cb);
+    label.appendChild(document.createTextNode(name));
+    container.appendChild(label);
+  });
+}
+function getCheckedCols(container) {
+  return Array.prototype.slice.call(container.querySelectorAll('input[type=checkbox]'))
+    .filter(function (cb) { return cb.checked; })
+    .map(function (cb) { return cb.value; });
+}
+
+/* ---------- 精确匹配 / 数值条件块 ---------- */
+function distinctValues(column) {
+  var seen = {}, vals = [];
+  state.records.forEach(function (rec) {
+    var v = cellText(rec, column);
+    if (!v || seen[v]) return;
+    seen[v] = true;
+    if (vals.length < 500) vals.push(v);
+  });
+  return vals.sort(function (a, b) { return a.localeCompare(b, 'zh-CN'); });
+}
+
+function addExactCondition(presetColumn) {
+  var wrap = document.createElement('div');
+  wrap.className = 'cond inner';
+  wrap.style.marginTop = '8px';
+  var head = document.createElement('div');
+  head.className = 'head';
+  var sel = document.createElement('select');
+  sel.setAttribute('aria-label', '精确匹配列');
+  var empty = document.createElement('option');
+  empty.value = '';
+  empty.textContent = '选择列…';
+  sel.appendChild(empty);
+  state.columns.forEach(function (c) {
+    var o = document.createElement('option');
+    o.value = c; o.textContent = c;
+    sel.appendChild(o);
+  });
+  head.appendChild(sel);
+  var del = document.createElement('button');
+  del.type = 'button';
+  del.className = 'btn ghost small del';
+  del.textContent = '删除';
+  del.addEventListener('click', function () { wrap.remove(); });
+  head.appendChild(del);
+  var vals = document.createElement('div');
+  vals.className = 'vals';
+  wrap.appendChild(head);
+  wrap.appendChild(vals);
+  wrap.setAttribute('data-role', 'exact');
+  exactList.appendChild(wrap);
+
+  function renderValues() {
+    vals.innerHTML = '';
+    var col = sel.value;
+    if (!col) { vals.innerHTML = '<span class="muted">先选一列，再勾选要保留的值</span>'; return; }
+    var list = distinctValues(col);
+    if (!list.length) { vals.innerHTML = '<span class="muted">这一列没有可用值</span>'; return; }
+    list.slice(0, 300).forEach(function (v) {
+      var lb = document.createElement('label');
+      lb.className = 'chip';
+      var cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.value = v;
+      lb.appendChild(cb);
+      lb.appendChild(document.createTextNode(v));
+      vals.appendChild(lb);
+    });
+    if (list.length > 300) {
+      var tip = document.createElement('span');
+      tip.className = 'muted';
+      tip.textContent = '（值太多，只显示前 300 个，建议改用上面的文本条件）';
+      vals.appendChild(tip);
+    }
+  }
+  sel.addEventListener('change', renderValues);
+  if (presetColumn) {
+    sel.value = presetColumn;
+    renderValues();
+  } else {
+    renderValues();
+  }
+}
+
+function addNumCondition(presetColumn) {
+  var wrap = document.createElement('div');
+  wrap.className = 'cond inner';
+  wrap.style.marginTop = '8px';
+  var head = document.createElement('div');
+  head.className = 'head';
+  var sel = document.createElement('select');
+  var empty = document.createElement('option');
+  empty.value = ''; empty.textContent = '选择列…';
+  sel.appendChild(empty);
+  state.columns.forEach(function (c) {
+    var o = document.createElement('option'); o.value = c; o.textContent = c; sel.appendChild(o);
+  });
+  if (presetColumn) sel.value = presetColumn;
+  var op = document.createElement('select');
+  var o1 = document.createElement('option'); o1.value = '>='; o1.textContent = '≥ 大于等于';
+  var o2 = document.createElement('option'); o2.value = '<='; o2.textContent = '≤ 小于等于';
+  op.appendChild(o1); op.appendChild(o2);
+  var num = document.createElement('input');
+  num.type = 'number';
+  num.step = 'any';
+  num.placeholder = '数值';
+  num.style.width = '110px';
+  var del = document.createElement('button');
+  del.type = 'button'; del.className = 'btn ghost small del'; del.textContent = '删除';
+  del.addEventListener('click', function () { wrap.remove(); });
+  head.appendChild(sel); head.appendChild(op); head.appendChild(num); head.appendChild(del);
+  wrap.appendChild(head);
+  wrap.setAttribute('data-role', 'numeric');
+  numList.appendChild(wrap);
+}
+
+function rebuildConditionSelects() {
+  exactList.innerHTML = '';
+  numList.innerHTML = '';
+  var edu = findColumn(['学历']);
+  var pol = findColumn(['政治面貌']);
+  var numCol = findColumn(['招考人数', '人数']);
+  addExactCondition(edu || '');
+  addExactCondition(pol || '');
+  addNumCondition(numCol || '');
+}
+function findColumn(keywords) {
+  for (var i = 0; i < state.columns.length; i++) {
+    for (var k = 0; k < keywords.length; k++) {
+      if (state.columns[i].indexOf(keywords[k]) >= 0) return state.columns[i];
+    }
+  }
+  return '';
+}
+
+/* ---------- 读取条件并筛选 ---------- */
+function collectFilters() {
+  var exact = [];
+  Array.prototype.slice.call(exactList.querySelectorAll('[data-role="exact"]')).forEach(function (block) {
+    var sel = block.querySelector('select');
+    var values = Array.prototype.slice.call(block.querySelectorAll('input[type=checkbox]'))
+      .filter(function (cb) { return cb.checked; })
+      .map(function (cb) { return cb.value; });
+    if (sel.value && values.length) exact.push({ column: sel.value, values: values });
+  });
+  var numeric = [];
+  Array.prototype.slice.call(numList.querySelectorAll('[data-role="numeric"]')).forEach(function (block) {
+    var selects = block.querySelectorAll('select');
+    var num = block.querySelector('input[type=number]');
+    if (selects[0].value && num.value !== '') {
+      numeric.push({ column: selects[0].value, op: selects[1].value, value: num.value });
+    }
+  });
+  return {
+    include: { keywords: textKeywords.value, columns: getCheckedCols(textCols), mode: textMode.value },
+    exclude: { keywords: excludeKeywords.value, columns: getCheckedCols(excludeCols) },
+    exact: exact,
+    numeric: numeric
+  };
+}
+
+function runFilter() {
+  if (!state.records.length) { setStatus('先上传一个职位表。', 'err'); return; }
+  var filters = collectFilters();
+  var matched = applyFilters(state.records, filters);
+  state.matched = matched;
+  state.matchedFilters = filters;
+  resultCard.style.display = 'block';
+  var total = state.records.length;
+  summaryEl.innerHTML = '命中 <b>' + matched.length + '</b> 行 / 共 ' + total + ' 行' +
+    (filters.exact.length || filters.numeric.length || splitKeywords(filters.include.keywords).length || splitKeywords(filters.exclude.keywords).length
+      ? '（已按条件过滤）' : '（未设置条件，显示全部）');
+  renderPreview(matched);
+  if (!matched.length) {
+    setStatus('没有完全匹配的岗位：试试把专业关键词换成更短的上位词（如「计算机」），或去掉「学历精确匹配」「招考人数」这类限制。', 'err');
+  } else {
+    setStatus('筛选完成：' + matched.length + ' 行命中。可以导出 xlsx / csv 再核对。', 'ok');
+  }
+}
+
+function renderPreview(rows) {
+  var cols = state.visibleCols.length ? state.visibleCols : state.columns;
+  var html = '<table><thead><tr>';
+  cols.forEach(function (c) { html += '<th>' + escapeHtml(c) + '</th>'; });
+  html += '</tr></thead><tbody>';
+  rows.slice(0, 200).forEach(function (rec) {
+    html += '<tr>';
+    cols.forEach(function (c) { html += '<td title="' + escapeHtml(String(rec[c] == null ? '' : rec[c])) + '">' + escapeHtml(String(rec[c] == null ? '' : rec[c])) + '</td>'; });
+    html += '</tr>';
+  });
+  html += '</tbody></table>';
+  if (!rows.length) html = '<div style="padding:16px;color:#59636e">没有结果</div>';
+  previewWrap.innerHTML = html;
+}
+function escapeHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* ---------- 导出 ---------- */
+function exportName(ext) {
+  var base = state.fileName.replace(/\.[^.]+$/, '') || '职位表';
+  var d = new Date();
+  var stamp = d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+  return '筛选结果-' + base + '-' + stamp + '.' + ext;
+}
+exportXlsxBtn.addEventListener('click', function () {
+  if (!state.matched.length) { setStatus('没有命中行，先放宽条件再导出。', 'err'); return; }
+  if (!window.XLSX) { showLibError(); return; }
+  var cols = state.visibleCols.length ? state.visibleCols : state.columns;
+  var aoa = [cols];
+  state.matched.forEach(function (rec) { aoa.push(cols.map(function (c) { return rec[c] == null ? '' : rec[c]; })); });
+  var ws = window.XLSX.utils.aoa_to_sheet(aoa);
+  var wb = window.XLSX.utils.book_new();
+  window.XLSX.utils.book_append_sheet(wb, ws, '筛选结果');
+  window.XLSX.writeFile(wb, exportName('xlsx'));
+  setStatus('已生成 Excel：' + exportName('xlsx') + '（' + state.matched.length + ' 行）', 'ok');
+});
+exportCsvBtn.addEventListener('click', function () {
+  if (!state.matched.length) { setStatus('没有命中行，先放宽条件再导出。', 'err'); return; }
+  var cols = state.visibleCols.length ? state.visibleCols : state.columns;
+  var csv = recordsToCsv(cols, state.matched);
+  var blob = new Blob([csv], { type: 'text/csv;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url; a.download = exportName('csv');
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function () { URL.revokeObjectURL(url); }, 30000);
+  setStatus('已生成 CSV：' + exportName('csv') + '（' + state.matched.length + ' 行，带 BOM，Excel 打开不乱码）', 'ok');
+});
+
+/* ---------- 事件绑定 ---------- */
+drop.addEventListener('click', function () { fileInput.click(); });
+drop.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+['dragenter', 'dragover'].forEach(function (ev) {
+  drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); });
+});
+['dragleave', 'drop'].forEach(function (ev) {
+  drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); });
+});
+drop.addEventListener('drop', function (e) {
+  if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]);
+});
+fileInput.addEventListener('change', function () {
+  if (fileInput.files && fileInput.files[0]) readFile(fileInput.files[0]);
+  fileInput.value = '';
+});
+headerRowSel.addEventListener('change', function () {
+  state.headerRowIndex = parseInt(headerRowSel.value, 10) || 0;
+  rebuildFromHeader();
+  setStatus('表头改为第 ' + (state.headerRowIndex + 1) + ' 行，共 ' + state.records.length + ' 条数据。', 'ok');
+});
+redetectBtn.addEventListener('click', function () {
+  state.headerRowIndex = detectHeaderRow(state.rows);
+  fillHeaderRowOptions();
+  rebuildFromHeader();
+  setStatus('重新识别：表头在第 ' + (state.headerRowIndex + 1) + ' 行。', 'ok');
+});
+addExactBtn.addEventListener('click', function () { addExactCondition(''); });
+addNumBtn.addEventListener('click', function () { addNumCondition(''); });
+runBtn.addEventListener('click', runFilter);
+resetBtn.addEventListener('click', function () {
+  textKeywords.value = '';
+  excludeKeywords.value = '';
+  textMode.value = 'contains';
+  getCheckedCols(textCols);
+  Array.prototype.slice.call(textCols.querySelectorAll('input')).forEach(function (cb) { cb.checked = false; });
+  Array.prototype.slice.call(excludeCols.querySelectorAll('input')).forEach(function (cb) { cb.checked = false; });
+  Array.prototype.slice.call(document.querySelectorAll('.chip.on')).forEach(function (el) { el.classList.remove('on'); });
+  rebuildConditionSelects();
+  resultCard.style.display = 'none';
+  setStatus('条件已清空，重新填再点开始筛选。');
+});
+clearFileBtn.addEventListener('click', function () {
+  state.rows = []; state.records = []; state.columns = []; state.matched = [];
+  setupCard.style.display = 'none';
+  filterCard.style.display = 'none';
+  resultCard.style.display = 'none';
+  setStatus('已清空，重新选择职位表即可。');
+});
+
+/* ---------- 启动：尝试加载 SheetJS（失败则降级到 CSV） ---------- */
+if (window.XLSX) {
+  lib.ready = true;
+  setStatus('表格解析库已就绪，上传职位表开始。');
+} else {
+  setStatus('正在加载表格解析库…（首次需要联网一次）');
+  loadXlsx(0).then(function () {
+    lib.ready = true;
+    setStatus('表格解析库已就绪，上传职位表开始。');
+  }).catch(function () {
+    showLibError();
+  });
+}
+</script>
+</body>
+</html>
