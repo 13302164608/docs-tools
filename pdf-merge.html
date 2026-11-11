@@ -5,6 +5,78 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PDF 合并在线免费｜多个 PDF 合成一个，可调顺序，文件不上传</title>
 <meta name="description" content="免费在线合并 PDF：一次选多个 PDF，拖动顺序或上下移动，一键合并成一个文件并下载。文件只在浏览器本地处理，不上传服务器；支持手机使用，无需注册。">
+<link rel="canonical" href="https://13302164608.github.io/docs-tools/pdf-merge.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="文档代做">
+<meta property="og:title" content="PDF 合并在线免费｜多个 PDF 合成一个，可调顺序，文件不上传">
+<meta property="og:description" content="选多个 PDF、调顺序、合成一个文件下载；浏览器本地处理，文件不上传，支持手机使用，无需注册。">
+<meta property="og:url" content="https://13302164608.github.io/docs-tools/pdf-merge.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "PDF 合并（在线免费）",
+      "url": "https://13302164608.github.io/docs-tools/pdf-merge.html",
+      "description": "在浏览器里把多个 PDF 按指定顺序合并成一个文件：选文件、上移下移排序、一键合并下载，文件不上传服务器。",
+      "applicationCategory": "Productivity",
+      "operatingSystem": "Any",
+      "browserRequirements": "支持 File API 的现代浏览器（Chrome、Edge、Safari、Firefox）",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "featureList": [
+        "一次选择多个 PDF",
+        "上移 / 下移调整合并顺序",
+        "显示每个文件的页数与大小",
+        "合并后自动下载单个 PDF",
+        "文件不上传，本地完成"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "为什么提示「已加密」？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "设了打开密码或权限密码的 PDF 需要先解除保护才能合并。用原密码打开、另存一份无密码副本，再来合并即可。浏览器里无法绕过密码，这不是收费项。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "合并后顺序不对怎么办？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "用列表里的「上移 / 下移」调整后再合并，合并顺序就是列表从上到下。没有拖拽排序，是因为手机上拖拽不稳，按钮更可靠。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "要拆页、删页、加水印呢？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "这些需求可以直接找我代做：合并拆分、删页旋转、加水印、压缩、转 Word / Excel，常规 1 小时内交付。把文件发我，免费评估后报价。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "为什么第一次打开要联网？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "合并功能要用到 PDF 处理库（约 300KB），从 CDN 加载一次后浏览器会缓存；之后断网也能用。你的 PDF 始终没有上传。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
 :root{--ink:#1f2328;--sub:#59636e;--line:#e6e8eb;--accent:#0b6bcb;--bg:#f7f8fa;--card:#fff}
 *{box-sizing:border-box}
@@ -98,14 +170,19 @@ footer a{color:var(--sub)}
   <p>① 点上面的框选 PDF（可一次选多个）；② 用「上移 / 下移」调整顺序；③ 点「合并成一个 PDF」，浏览器会直接下载合并后的文件。整个文件在内存里处理，关掉页面就没了，网站上不留副本。</p>
   <p>手机也能用：选文件、合并、下载都在浏览器里完成，文件特别大（比如 50MB 以上的扫描件）时手机可能慢一点，建议一次不超过 20 个文件。</p>
 
-  <h2>常见问题</h2>
-  <h3>为什么提示「已加密」？</h3>
-  <p>设了打开密码或权限密码的 PDF 需要先解除保护（用原密码另存一份无密码副本）才能合并。这不是收费项，浏览器里无法绕过密码。</p>
-  <h3>合并后顺序不对怎么办？</h3>
-  <p>用列表里的「上移 / 下移」调整后再合并。合并顺序就是列表从上到下。</p>
-  <h3>要拆页、删页、加水印呢？</h3>
-  <p>这些需求可以直接找我代做：合并拆分、删页旋转、加水印、压缩、转 Word / Excel，常规 1 小时内交付。</p>
-  <h3>为什么第一次打开要联网？</h3>
+  <h2>PDF 合并的事实说明</h2>
+  <p>合并只复制每个源文件的页面，不会重新排版、不会压缩图像、不改变页面尺寸；输出的新文件页数等于所选文件页数之和。目录书签、表单域（可填写输入框）和部分批注不会随页面一起复制，这是页面级复制方式的限制。文件在浏览器内存里处理，不上传服务器；第一次使用需要联网加载约 300KB 的 PDF 处理库，之后由浏览器缓存。</p>
+
+  <h2>为什么提示「已加密」？</h2>
+  <p>设了打开密码或权限密码的 PDF 需要先解除保护才能合并。用原密码打开、另存一份无密码副本，再来合并即可。浏览器里无法绕过密码，这不是收费项。</p>
+
+  <h2>合并后顺序不对怎么办？</h2>
+  <p>用列表里的「上移 / 下移」调整后再合并，合并顺序就是列表从上到下。没有拖拽排序，是因为手机上拖拽不稳，按钮更可靠。</p>
+
+  <h2>要拆页、删页、加水印呢？</h2>
+  <p>这些需求可以直接找我代做：合并拆分、删页旋转、加水印、压缩、转 Word / Excel，常规 1 小时内交付。把文件发我，免费评估后报价。</p>
+
+  <h2>为什么第一次打开要联网？</h2>
   <p>合并功能要用到 PDF 处理库（约 300KB），从 CDN 加载一次后浏览器会缓存；之后断网也能用。你的 PDF 始终没有上传。</p>
 
   <div class="related">相关免费工具：<a href="compress.html">图片批量压缩</a><a href="csv-json.html">CSV ⇄ JSON</a><a href="char-count.html">字数统计</a><a href="index.html#free-tools">全部工具</a></div>
@@ -181,29 +258,28 @@ function readPdfDoc(file) {
     throw new Error('读取失败：' + (msg || '未知错误'));
   });
 }
-/* 合并：items = [{doc}]（保持顺序），返回 Uint8Array */
+/* 合并：items = [{doc}]（保持顺序），返回 {bytes, pageCount}；PDFDocument.create() 是异步的 */
 function mergePdfItems(items, onProgress) {
   return ensureLib().then(function () {
     if (!items.length) throw new Error('没有可合并的文件');
     var PDFLib = window.PDFLib;
-    var out = PDFLib.PDFDocument.create();
-    out.setProducer('文档代做 · PDF合并');
-    out.setCreator('文档代做 免费工具');
-    var total = items.length;
-    function step(i) {
-      if (i >= total) {
-        return out.save({ useObjectStreams: true }).then(function (bytes) {
-          return { bytes: bytes, pageCount: out.getPageCount() };
+    return PDFLib.PDFDocument.create().then(function (out) {
+      var total = items.length;
+      function step(i) {
+        if (i >= total) {
+          return out.save({ useObjectStreams: true }).then(function (bytes) {
+            return { bytes: bytes, pageCount: out.getPageCount() };
+          });
+        }
+        var src = items[i].doc;
+        if (onProgress) onProgress(i + 1, total);
+        return out.copyPages(src, src.getPageIndices()).then(function (pages) {
+          pages.forEach(function (p) { out.addPage(p); });
+          return step(i + 1);
         });
       }
-      var src = items[i].doc;
-      if (onProgress) onProgress(i + 1, total);
-      return out.copyPages(src, src.getPageIndices()).then(function (pages) {
-        pages.forEach(function (p) { out.addPage(p); });
-        return step(i + 1);
-      });
-    }
-    return step(0);
+      return step(0);
+    });
   });
 }
 
