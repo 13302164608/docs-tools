@@ -156,13 +156,13 @@ tr:last-child td{border-bottom:none}
 .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:16px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
 footer{border-top:1px solid var(--line);margin-top:52px;padding:26px 0 40px;color:var(--sub);font-size:13px}
 footer a{color:var(--sub)}
-@media(max-width:600px){.hero h1{font-size:26px}.hero{padding:34px 0 26px}.nav nav{gap:12px}.nav a{font-size:12.5px}}
+@media(max-width:600px){.hero h1{font-size:26px}.hero{padding:34px 0 26px}.nav nav{gap:10px}.nav a{font-size:12px}}
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
   <a class="brand" href="./">文档代做</a>
-  <nav><a href="#services">能做什么</a><a href="#price">价格</a><a href="templates.html">模板包</a><a href="#free-tools">免费工具</a><a href="tools.html">Excel 速查</a></nav>
+  <nav><a href="#services">能做什么</a><a href="#price">价格</a><a href="templates.html">模板包</a><a href="job-filter.html">查岗位</a><a href="id-photo.html">证件照</a><a href="#free-tools">工具</a></nav>
 </div></header>
 
 <main class="wrap">
@@ -195,6 +195,8 @@ footer a{color:var(--sub)}
   <h2 id="free-tools">免费在线工具</h2>
   <p class="tools-note">这几个是自助的，打开就能用，不用注册、不用沟通、文件不上传服务器。用完发现要按你的需求定制，再找我做。</p>
   <div class="grid">
+    <div class="card"><h3>职位表筛选器（考公考编）</h3><p>上传职位表 xlsx/csv，按专业、学历、政治面貌、招考人数、基层年限组合筛选，命中行导出 Excel。</p><a class="tool-link" href="job-filter.html">打开工具 →</a></div>
+    <div class="card"><h3>证件照制作</h3><p>一寸 / 二寸 / 小二寸自动裁剪，白蓝红底一键换，可压到报名系统要求的 KB。</p><a class="tool-link" href="id-photo.html">打开工具 →</a></div>
     <div class="card"><h3>图片批量压缩</h3><p>多张一起压，显示压缩前后体积，可指定压到 200KB 以内（报名/后台系统上传限制）。</p><a class="tool-link" href="compress.html">打开工具 →</a></div>
     <div class="card"><h3>PDF 合并</h3><p>选多个 PDF、调顺序、合成一个文件下载；手机上也能用。</p><a class="tool-link" href="pdf-merge.html">打开工具 →</a></div>
     <div class="card"><h3>CSV ⇄ JSON 互转</h3><p>表格导出数据和接口 JSON 来回转，自动识别分隔符，下载 CSV 用 Excel 打开不乱码。</p><a class="tool-link" href="csv-json.html">打开工具 →</a></div>
@@ -259,7 +261,7 @@ footer a{color:var(--sub)}
 
 <footer class="wrap">
   <p>文档代做 · 当天交付 ｜ <a href="templates.html">模板包</a> · <a href="tools.html">Excel 速查表</a></p>
-  <p>免费工具：<a href="compress.html">图片压缩</a> · <a href="pdf-merge.html">PDF 合并</a> · <a href="csv-json.html">CSV ⇄ JSON</a> · <a href="char-count.html">字数统计</a></p>
+  <p>免费工具：<a href="job-filter.html">职位表筛选</a> · <a href="id-photo.html">证件照</a> · <a href="compress.html">图片压缩</a> · <a href="pdf-merge.html">PDF 合并</a> · <a href="csv-json.html">CSV ⇄ JSON</a> · <a href="char-count.html">字数统计</a></p>
   <p>翔宇众成（天津）科技发展有限公司</p>
 </footer>
 </body>
