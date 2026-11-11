@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>字数统计在线工具｜中英文分开计数、去空格、段落数、阅读时长</title>
+<meta name="description" content="免费在线字数统计：实时统计总字符数、不含空格字符数、中文汉字数、英文单词数、数字、标点、段落数与预计阅读时长，附小红书 / 公众号字数参考。粘贴即算，内容不上传。">
+<style>
+:root{--ink:#1f2328;--sub:#59636e;--line:#e6e8eb;--accent:#0b6bcb;--bg:#f7f8fa;--card:#fff;--good:#0a7a3d;--warn:#b54708;--bad:#b42318}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:9}
+.nav{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{font-weight:700;font-size:16px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.nav nav{display:flex;gap:16px;flex-wrap:wrap}
+.nav a{color:var(--sub);text-decoration:none;font-size:14px}
+.nav a:hover{color:var(--accent)}
+main{padding:32px 0 10px}
+h1{font-size:28px;margin:0 0 8px;letter-spacing:-.4px}
+.lead{color:var(--sub);font-size:15px;margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+h2{font-size:19px;margin:36px 0 10px}
+h3{font-size:15.5px;margin:22px 0 6px}
+p{font-size:15px}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;text-decoration:none;padding:8px 16px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.btn:hover{filter:brightness(.93)}
+.btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+.btn.small{padding:5px 12px;font-size:13px}
+textarea{width:100%;min-height:230px;border:1px solid var(--line);border-radius:10px;padding:12px;font-size:15px;line-height:1.7;background:#fcfdfe;color:var(--ink);resize:vertical;font-family:inherit}
+textarea:focus{outline:2px solid #bcd9f6;border-color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:10px;margin-top:14px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:10px;padding:11px 13px}
+.stat .k{font-size:12.5px;color:var(--sub);white-space:nowrap}
+.stat .v{font-size:22px;font-weight:700;line-height:1.35;font-variant-numeric:tabular-nums}
+.stat .u{font-size:12px;font-weight:400;color:var(--sub);margin-left:3px}
+.limit{margin-top:14px;background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 14px}
+.limit .head{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13.5px;color:var(--sub)}
+.limit select{font:inherit;font-size:13.5px;padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)}
+.bar{height:8px;background:#eef1f5;border-radius:999px;overflow:hidden;margin-top:8px}
+.bar > i{display:block;height:100%;width:0;background:var(--good);border-radius:999px;transition:width .15s}
+.bar.warn > i{background:#e6a23c}
+.bar.bad > i{background:var(--bad)}
+.lt{font-size:13px;color:var(--sub);margin-top:6px}
+.mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.status{font-size:13.5px;color:var(--sub);margin:10px 0 0;min-height:20px}
+.status.ok{color:var(--good)}
+.status.err{color:var(--bad)}
+.note{background:#fff;border-left:3px solid var(--accent);padding:14px 16px;border-radius:6px;font-size:14px;color:var(--sub);margin:18px 0}
+.related{font-size:14px;color:var(--sub);margin-top:26px}
+.related a{color:var(--accent);text-decoration:none;margin-right:14px}
+.cta-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin:30px 0 0}
+.cta-box p{margin:0 0 12px;color:var(--sub);font-size:14.5px}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:11px 22px;border-radius:8px;font-weight:600;font-size:15px}
+footer{border-top:1px solid var(--line);margin-top:44px;padding:24px 0 40px;color:var(--sub);font-size:13px}
+footer a{color:var(--sub)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:600px){h1{font-size:23px}.nav nav{gap:13px}.nav a{font-size:12.5px}.brand{font-size:15px}.stat .v{font-size:20px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="./">文档代做</a>
+  <nav><a href="./">首页</a><a href="templates.html">模板包</a><a href="index.html#free-tools">免费工具</a><a href="tools.html">Excel 速查</a></nav>
+</div></header>
+
+<main class="wrap">
+  <h1>字数统计（在线免费）</h1>
+  <p class="lead">中英文分开算：汉字数、英文单词数、去空格字符数、段落数、预计阅读时长。写公众号 / 小红书 / 简历 / 论文都能用，内容不上传。</p>
+
+  <div class="card">
+    <textarea id="text" spellcheck="false" aria-label="输入要统计的文字" placeholder="在这里粘贴或输入文字，左边输入右边实时出数。&#10;&#10;比如：这是一段中文，加 English words 混排测试。"></textarea>
+    <div class="mini">
+      <button class="btn small" id="pasteBtn">粘贴</button>
+      <button class="btn ghost small" id="copyCleanBtn">复制纯文本（去多余空行）</button>
+      <button class="btn ghost small" id="uploadBtn">上传 txt / md</button>
+      <button class="btn ghost small" id="clearBtn">清空</button>
+      <input type="file" id="fileInput" accept=".txt,.md,.markdown,text/plain" class="sr" aria-label="上传文本文件">
+    </div>
+    <p class="status" id="status" aria-live="polite">直接粘贴内容即可，统计是实时的。</p>
+
+    <div class="stats">
+      <div class="stat"><div class="k">总字符数（含空格）</div><div class="v"><span id="sTotal">0</span></div></div>
+      <div class="stat"><div class="k">字符数（不含空格）</div><div class="v"><span id="sNoSpace">0</span></div></div>
+      <div class="stat"><div class="k">中文汉字</div><div class="v"><span id="sCn">0</span></div></div>
+      <div class="stat"><div class="k">英文单词</div><div class="v"><span id="sEn">0</span></div></div>
+      <div class="stat"><div class="k">数字（串）</div><div class="v"><span id="sNum">0</span></div></div>
+      <div class="stat"><div class="k">标点符号</div><div class="v"><span id="sPunc">0</span></div></div>
+      <div class="stat"><div class="k">段落数</div><div class="v"><span id="sPara">0</span></div></div>
+      <div class="stat"><div class="k">非空行数</div><div class="v"><span id="sLines">0</span></div></div>
+      <div class="stat"><div class="k">预计阅读</div><div class="v"><span id="sRead">0</span><span class="u">分钟</span></div></div>
+    </div>
+
+    <div class="limit">
+      <div class="head">
+        <span>平台字数参考：
+          <select id="limitSel" aria-label="平台字数参考">
+            <option value="1000">小红书正文 1000 字</option>
+            <option value="64">公众号标题 64 字</option>
+            <option value="2000">长文/公众号正文 2000 字（自定参考）</option>
+            <option value="0">不比对</option>
+          </select>
+        </span>
+        <span id="limitText">0 / 1000</span>
+      </div>
+      <div class="bar" id="limitBar"><i id="limitFill"></i></div>
+      <div class="lt" id="limitHint">按「字符数（不含空格）」比对；平台规则可能调整，以平台发布页提示为准。</div>
+    </div>
+  </div>
+
+  <div class="note">统计口径：<strong>中文汉字</strong>按 Unicode 汉字区逐个计（不含标点）；<strong>英文单词</strong>按连续的字母算，<code>don't</code>、<code>well-known</code> 算 1 个；emoji 和生僻字按 1 个字符算。</div>
+
+  <h2>这些数字有什么用</h2>
+  <p>公众号和小红书都有字数上限，写到一半不知道超没超，粘进来一眼就看到；自媒体作者关心「多少字读完要几分钟」，这里按中文 300 字/分钟、英文 200 词/分钟估。写论文、写简历时看「汉字数 + 英文单词数」比 Word 的「字数」更贴近真实篇幅，因为 Word 对中英混排的统计口径和平台不一样。</p>
+  <p>「复制纯文本」会去掉每行行尾空格、把连续空行压成一个，再把结果放进剪贴板——粘到公众号后台、Word、记事本里都不会带一堆空行和全角空格。</p>
+
+  <h2>常见问题</h2>
+  <h3>和 Word 的字数为什么不一样？</h3>
+  <p>Word 的「字数」把连续的汉字串按字计，对中英混排和标点的处理与本工具不同，差几个字是正常的。要交稿算字数，按对方要求的工具为准。</p>
+  <h3>小红书 1000 字包括标点吗？</h3>
+  <p>平台一般按字符计，标点和 emoji 都占位。写之前留 50-100 字余量最稳，规则以平台发布页为准。</p>
+  <h3>内容会被保存吗？</h3>
+  <p>不会。统计全部在浏览器里完成，刷新页面就没了，也没有上传接口。</p>
+
+  <div class="related">相关免费工具：<a href="compress.html">图片批量压缩</a><a href="pdf-merge.html">PDF 合并</a><a href="csv-json.html">CSV ⇄ JSON</a><a href="index.html#free-tools">全部工具</a></div>
+
+  <div class="cta-box">
+    <p>要按字数改稿、缩到平台限制、或者把长文排成公众号样式？这种活我按篇做。</p>
+    <a class="cta" href="./index.html">需要代做？看服务与价格</a>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>文档代做 · 当天交付 ｜ <a href="./index.html">首页</a> · <a href="templates.html">模板包</a> · <a href="tools.html">Excel 速查</a></p>
+  <p>翔宇众成（天津）科技发展有限公司</p>
+</footer>
+
+<script>
+'use strict';
+/* ================= 统计核心（全局，便于自检） ================= */
+var CN_RE = /[\u3400-\u4DBF\u4E00-\u9FFF\uF900-\uFAFF]/g;
+var EN_RE = /[A-Za-z]+(?:['\u2019\-][A-Za-z]+)*/g;
+var NUM_RE = /\d+(?:\.\d+)?/g;
+var PUNC_RE = /[\u3000-\u303F\uFF01-\uFF0F\uFF1A-\uFF20\uFF3B-\uFF40\uFF5B-\uFF65,.!?;:'"()\[\]{}<>\/\\|@#$%^&*+=~`_\-\u2014\u2026\u00b7]/g;
+
+function countMatches(text, re) {
+  var m = text.match(re);
+  return m ? m.length : 0;
+}
+/* 返回统计对象；纯函数，输入字符串 */
+function analyzeText(text) {
+  text = String(text == null ? '' : text);
+  var chars = Array.from(text);              /* 按字符计，emoji 算 1 个 */
+  var total = chars.length;
+  var noSpace = text.replace(/\s/g, '').length;
+  var cn = countMatches(text, CN_RE);
+  var en = countMatches(text, EN_RE);
+  var num = countMatches(text, NUM_RE);
+  var punc = countMatches(text, PUNC_RE);
+  var lines = text.split(/\r?\n/).filter(function (l) { return l.trim() !== ''; }).length;
+  var paras = text.split(/\r?\n\s*\r?\n/).filter(function (p) { return p.trim() !== ''; }).length;
+  if (total === 0) { lines = 0; paras = 0; }
+  /* 阅读时长：中文 300 字/分，英文 200 词/分，取较大者 */
+  var minutes = cn / 300 + en / 200;
+  var readMin = total === 0 ? 0 : Math.max(1, Math.ceil(minutes));
+  return {
+    total: total, noSpace: noSpace, cn: cn, en: en, num: num, punc: punc,
+    lines: lines, paras: paras, readMin: readMin,
+    cjkPunctIncluded: cn + punc
+  };
+}
+/* 清洗文本：去行尾空白、压缩连续空行、去首尾空行 */
+function cleanText(text) {
+  return String(text == null ? '' : text)
+    .replace(/\r\n?/g, '\n')
+    .split('\n')
+    .map(function (l) { return l.replace(/[ \t\u3000]+$/g, ''); })
+    .join('\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .replace(/^\n+/, '')
+    .replace(/\n+$/, '');
+}
+
+/* ================= 界面 ================= */
+var textEl = document.getElementById('text');
+var statusEl = document.getElementById('status');
+var limitSel = document.getElementById('limitSel');
+var limitText = document.getElementById('limitText');
+var limitBar = document.getElementById('limitBar');
+var limitFill = document.getElementById('limitFill');
+var limitHint = document.getElementById('limitHint');
+var els = {
+  total: document.getElementById('sTotal'),
+  noSpace: document.getElementById('sNoSpace'),
+  cn: document.getElementById('sCn'),
+  en: document.getElementById('sEn'),
+  num: document.getElementById('sNum'),
+  punc: document.getElementById('sPunc'),
+  para: document.getElementById('sPara'),
+  lines: document.getElementById('sLines'),
+  read: document.getElementById('sRead')
+};
+function fmt(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+function render() {
+  var stats = analyzeText(textEl.value);
+  els.total.textContent = fmt(stats.total);
+  els.noSpace.textContent = fmt(stats.noSpace);
+  els.cn.textContent = fmt(stats.cn);
+  els.en.textContent = fmt(stats.en);
+  els.num.textContent = fmt(stats.num);
+  els.punc.textContent = fmt(stats.punc);
+  els.para.textContent = fmt(stats.paras);
+  els.lines.textContent = fmt(stats.lines);
+  els.read.textContent = fmt(stats.readMin);
+  var limit = parseInt(limitSel.value, 10) || 0;
+  if (!limit) {
+    limitText.textContent = '不比对';
+    limitFill.style.width = '0%';
+    limitBar.className = 'bar';
+    limitHint.textContent = '按「字符数（不含空格）」比对；平台规则可能调整，以平台发布页提示为准。';
+    return;
+  }
+  var pct = Math.min(100, Math.round(stats.noSpace / limit * 100));
+  limitText.textContent = fmt(stats.noSpace) + ' / ' + fmt(limit) + '（' + pct + '%）';
+  limitFill.style.width = pct + '%';
+  limitBar.className = 'bar' + (pct >= 100 ? ' bad' : (pct >= 85 ? ' warn' : ''));
+  if (pct >= 100) {
+    limitHint.textContent = '已超过参考上限 ' + fmt(stats.noSpace - limit) + ' 个字符，发布前需要删减。';
+  } else if (pct >= 85) {
+    limitHint.textContent = '接近上限，建议留 50-100 字余量（平台按字符计，含标点）。';
+  } else {
+    limitHint.textContent = '还有 ' + fmt(limit - stats.noSpace) + ' 个字符余量。';
+  }
+}
+
+textEl.addEventListener('input', render);
+limitSel.addEventListener('change', render);
+
+document.getElementById('clearBtn').addEventListener('click', function () {
+  textEl.value = '';
+  render();
+  statusEl.className = 'status';
+  statusEl.textContent = '已清空。';
+  textEl.focus();
+});
+document.getElementById('pasteBtn').addEventListener('click', function () {
+  if (!navigator.clipboard || !navigator.clipboard.readText) {
+    statusEl.className = 'status err';
+    statusEl.textContent = '当前浏览器不允许读取剪贴板，请直接粘贴到输入框。';
+    textEl.focus();
+    return;
+  }
+  navigator.clipboard.readText().then(function (t) {
+    textEl.value = t;
+    render();
+    statusEl.className = 'status ok';
+    statusEl.textContent = '已粘贴并统计。';
+  }).catch(function () {
+    statusEl.className = 'status err';
+    statusEl.textContent = '读取剪贴板被拒绝，请直接粘贴到输入框（Ctrl+V）。';
+    textEl.focus();
+  });
+});
+document.getElementById('copyCleanBtn').addEventListener('click', function () {
+  var cleaned = cleanText(textEl.value);
+  if (!cleaned) {
+    statusEl.className = 'status err';
+    statusEl.textContent = '没有可复制的内容。';
+    return;
+  }
+  function done(ok) {
+    statusEl.className = 'status ' + (ok ? 'ok' : 'err');
+    statusEl.textContent = ok
+      ? '已复制纯文本（行尾空格已去、连续空行已压成一个）。'
+      : '复制失败，请手动选择复制。';
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(cleaned).then(function () { done(true); }).catch(function () { done(false); });
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = cleaned;
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    done(ok);
+  }
+});
+document.getElementById('uploadBtn').addEventListener('click', function () {
+  document.getElementById('fileInput').click();
+});
+document.getElementById('fileInput').addEventListener('change', function () {
+  var f = this.files && this.files[0];
+  if (!f) return;
+  var reader = new FileReader();
+  reader.onload = function () {
+    textEl.value = String(reader.result || '');
+    render();
+    statusEl.className = 'status ok';
+    statusEl.textContent = '已读取 ' + f.name + '。';
+  };
+  reader.onerror = function () {
+    statusEl.className = 'status err';
+    statusEl.textContent = '读取文件失败，可以手动粘贴内容。';
+  };
+  reader.readAsText(f, 'UTF-8');
+  this.value = '';
+});
+render();
+</script>
+</body>
+</html>
