@@ -13,7 +13,8 @@ body{margin:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,s
 header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:9}
 .nav{display:flex;align-items:center;justify-content:space-between;height:56px}
 .brand{font-weight:700;font-size:16px;text-decoration:none;color:var(--ink)}
-.nav a{color:var(--sub);text-decoration:none;font-size:14px;margin-left:18px}
+.nav nav{display:flex;gap:16px;flex-wrap:wrap}
+.nav a{color:var(--sub);text-decoration:none;font-size:14px;white-space:nowrap}
 .nav a:hover{color:var(--accent)}
 .hero{padding:52px 0 36px}
 .hero h1{font-size:32px;line-height:1.3;margin:0 0 14px;letter-spacing:-.5px}
@@ -28,6 +29,9 @@ h2{font-size:21px;margin:44px 0 14px}
 .card h3{margin:0 0 6px;font-size:16px}
 .card p{margin:0;color:var(--sub);font-size:14px}
 .price{display:inline-block;margin-top:10px;font-weight:700;color:var(--accent);font-size:15px}
+.tool-link{display:inline-block;margin-top:9px;color:var(--accent);text-decoration:none;font-size:14px;font-weight:600}
+.tool-link:hover{text-decoration:underline}
+.tools-note{font-size:13px;color:var(--sub);margin:12px 0 0}
 table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:14px}
 th,td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
 th{background:#f0f3f7;font-weight:600}
@@ -38,13 +42,13 @@ tr:last-child td{border-bottom:none}
 .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:16px;top:16px;width:26px;height:26px;border-radius:50%;background:var(--accent);color:#fff;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center}
 footer{border-top:1px solid var(--line);margin-top:52px;padding:26px 0 40px;color:var(--sub);font-size:13px}
 footer a{color:var(--sub)}
-@media(max-width:600px){.hero h1{font-size:26px}.hero{padding:34px 0 26px}}
+@media(max-width:600px){.hero h1{font-size:26px}.hero{padding:34px 0 26px}.nav nav{gap:12px}.nav a{font-size:12.5px}}
 </style>
 </head>
 <body>
 <header><div class="wrap nav">
   <a class="brand" href="./">文档代做</a>
-  <nav><a href="#services">能做什么</a><a href="#price">价格</a><a href="templates.html">模板包</a><a href="tools.html">Excel 速查</a></nav>
+  <nav><a href="#services">能做什么</a><a href="#price">价格</a><a href="templates.html">模板包</a><a href="#free-tools">免费工具</a><a href="tools.html">Excel 速查</a></nav>
 </div></header>
 
 <main class="wrap">
@@ -72,6 +76,16 @@ footer a{color:var(--sub)}
     <div class="card"><h3>简历优化</h3><p>结构重排、亮点提炼、排版美化，交付 Word + PDF 两份。</p><span class="price">39 起</span></div>
     <div class="card"><h3>公众号 / 小红书排版</h3><p>小标题、引用、分割线、图片位；可直接粘进后台。</p><span class="price">19.9 起</span></div>
     <div class="card"><h3>批量文件整理</h3><p>批量重命名、按规则分类归档、从文件名提取信息到 Excel。</p><span class="price">15 起</span></div>
+  </div>
+
+  <h2 id="free-tools">免费在线工具</h2>
+  <p class="tools-note">这几个是自助的，打开就能用，不用注册、不用沟通、文件不上传服务器。用完发现要按你的需求定制，再找我做。</p>
+  <div class="grid">
+    <div class="card"><h3>图片批量压缩</h3><p>多张一起压，显示压缩前后体积，可指定压到 200KB 以内（报名/后台系统上传限制）。</p><a class="tool-link" href="compress.html">打开工具 →</a></div>
+    <div class="card"><h3>PDF 合并</h3><p>选多个 PDF、调顺序、合成一个文件下载；手机上也能用。</p><a class="tool-link" href="pdf-merge.html">打开工具 →</a></div>
+    <div class="card"><h3>CSV ⇄ JSON 互转</h3><p>表格导出数据和接口 JSON 来回转，自动识别分隔符，下载 CSV 用 Excel 打开不乱码。</p><a class="tool-link" href="csv-json.html">打开工具 →</a></div>
+    <div class="card"><h3>字数统计</h3><p>中英文分开计数、去空格字符数、段落数、阅读时长，附小红书 / 公众号字数参考。</p><a class="tool-link" href="char-count.html">打开工具 →</a></div>
+    <div class="card"><h3>Excel 函数速查表</h3><p>30 个高频函数写法 + 10 条避坑提醒，查表照抄就能用。</p><a class="tool-link" href="tools.html">查看速查表 →</a></div>
   </div>
 
   <h2 id="price">常见需求价格</h2>
@@ -112,6 +126,7 @@ footer a{color:var(--sub)}
 
 <footer class="wrap">
   <p>文档代做 · 当天交付 ｜ <a href="templates.html">模板包</a> · <a href="tools.html">Excel 速查表</a></p>
+  <p>免费工具：<a href="compress.html">图片压缩</a> · <a href="pdf-merge.html">PDF 合并</a> · <a href="csv-json.html">CSV ⇄ JSON</a> · <a href="char-count.html">字数统计</a></p>
   <p>翔宇众成（天津）科技发展有限公司</p>
 </footer>
 </body>
