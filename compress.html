@@ -5,6 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>图片批量压缩在线工具｜免费、不上传、可压到指定大小</title>
 <meta name="description" content="免费在线批量压缩图片：多选 JPG/PNG/WebP，可调质量与最大边长，也能指定目标大小（如 200KB 以内）。全部在浏览器本地用 Canvas 完成，文件不上传服务器，压缩前后体积对比后逐张下载。">
+<link rel="canonical" href="https://13302164608.github.io/docs-tools/compress.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="文档代做">
+<meta property="og:title" content="图片批量压缩在线工具｜免费、不上传、可压到指定大小">
+<meta property="og:description" content="多选 JPG/PNG/WebP 批量压缩，可调质量与最大边长，可指定压到 200KB 以内；浏览器本地处理，文件不上传，前后体积对比后逐张下载。">
+<meta property="og:url" content="https://13302164608.github.io/docs-tools/compress.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "图片批量压缩（在线免费）",
+      "url": "https://13302164608.github.io/docs-tools/compress.html",
+      "description": "在浏览器里批量压缩图片：多选 JPG/PNG/WebP，可调质量与最大边长，也可指定目标大小（如 200KB 以内），显示压缩前后体积并逐张下载，文件不上传。",
+      "applicationCategory": "Productivity",
+      "operatingSystem": "Any",
+      "browserRequirements": "支持 Canvas 与 createImageBitmap 的现代浏览器（Chrome、Edge、Safari、Firefox）",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "featureList": [
+        "批量选择 JPG / PNG / WebP / GIF 图片",
+        "调整输出质量与最大边长",
+        "按目标大小（KB）自动二分调整质量",
+        "压缩前后体积与输出尺寸对比",
+        "逐张下载或全部下载"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "压缩后会失真吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "会有轻微损失，但 80 左右的质量对网页、公众号、朋友圈、简历配图基本看不出差别。要印刷或做设计稿，请直接用原图，别用压缩后的文件。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "为什么有的图压缩后反而变大？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "原图本来就是高压缩率的小图时，重新编码可能变大。工具会照实显示体积变化（箭头向上标红），遇到这种情况直接保留原图即可。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "支持 iPhone 的 HEIC 吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不支持。HEIC 只有 iOS 能解码，先在手机上「导出为 JPG」或用系统相册另存 JPG，再来压缩。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "透明背景会怎样？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "输出 JPEG 时透明部分会变成白色；需要保留透明请选 WebP。这是 JPEG 格式本身没有透明通道导致的，不是压缩算法的问题。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "图片会被上传吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不会。整个压缩过程用浏览器 Canvas 完成，页面没有上传接口，断网也能用。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
 :root{--ink:#1f2328;--sub:#59636e;--line:#e6e8eb;--accent:#0b6bcb;--bg:#f7f8fa;--card:#fff}
 *{box-sizing:border-box}
@@ -123,16 +203,22 @@ footer a{color:var(--sub)}
   <h2>怎么把图片压到 200KB 以内</h2>
   <p>在「目标大小」里填 200，再点开始压缩。工具会自动反复调整编码质量，尽量贴近但不超目标；如果全图太复杂、最低质量仍超，就同时把「最大边长」调到 1600 px 或 1200 px，通常一次就能进 200KB。报名系统、签证材料、电商后台的上传限制基本都能这么过。</p>
 
-  <h2>常见问题</h2>
-  <h3>压缩后会失真吗？</h3>
-  <p>会有轻微损失，但 80 左右的质量对网页、公众号、朋友圈、简历配图基本看不出差别。要印刷或做设计稿，请直接用原图。</p>
-  <h3>为什么有的图压缩后反而变大？</h3>
-  <p>原图本来就是高压缩率的小图时，重新编码可能变大。工具会照实显示体积变化，遇到这种情况直接保留原图即可。</p>
-  <h3>支持 iPhone 的 HEIC 吗？</h3>
+  <h2>压缩的事实说明</h2>
+  <p>浏览器里能压的格式是 JPG、PNG、WebP、GIF（GIF 只取第一帧），输出是 JPEG 或 WebP。JPEG 重编码是有损的，质量 80 左右体积通常能降到原图的 20%-50%，这个比例随图片内容变化很大——细节多、噪点多的照片降得少。压缩不会上传任何文件：页面没有上传接口，断网也能用。</p>
+
+  <h2>压缩后会失真吗？</h2>
+  <p>会有轻微损失，但 80 左右的质量对网页、公众号、朋友圈、简历配图基本看不出差别。要印刷或做设计稿，请直接用原图，别用压缩后的文件。</p>
+
+  <h2>为什么有的图压缩后反而变大？</h2>
+  <p>原图本来就是高压缩率的小图时，重新编码可能变大。工具会照实显示体积变化（箭头向上标红），遇到这种情况直接保留原图即可。</p>
+
+  <h2>支持 iPhone 的 HEIC 吗？</h2>
   <p>不支持。HEIC 只有 iOS 能解码，先在手机上「导出为 JPG」或用系统相册另存 JPG，再来压缩。</p>
-  <h3>透明背景会怎样？</h3>
-  <p>输出 JPEG 时透明部分会变成白色；需要保留透明请选 WebP。</p>
-  <h3>图片会被上传吗？</h3>
+
+  <h2>透明背景会怎样？</h2>
+  <p>输出 JPEG 时透明部分会变成白色；需要保留透明请选 WebP。这是 JPEG 格式本身没有透明通道导致的，不是压缩算法的问题。</p>
+
+  <h2>图片会被上传吗？</h2>
   <p>不会。整个压缩过程用浏览器 Canvas 完成，页面没有上传接口，断网也能用。</p>
 
   <div class="related">相关免费工具：<a href="pdf-merge.html">PDF 合并</a><a href="csv-json.html">CSV ⇄ JSON</a><a href="char-count.html">字数统计</a><a href="index.html#free-tools">全部工具</a></div>
