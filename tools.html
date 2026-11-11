@@ -3,6 +3,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Excel 常用函数速查表｜30 个高频函数 + 10 条避坑</title>
 <meta name="description" content="VLOOKUP、XLOOKUP、SUMIFS、IFERROR、TEXT、DATEDIF 等 30 个高频 Excel 函数写法与用途，附 10 条避坑提醒。">
+<link rel="canonical" href="https://13302164608.github.io/docs-tools/tools.html">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="文档代做">
+<meta property="og:title" content="Excel 常用函数速查表｜30 个高频函数 + 10 条避坑">
+<meta property="og:description" content="VLOOKUP、XLOOKUP、SUMIFS、IFERROR、TEXT、DATEDIF 等 30 个高频 Excel 函数写法与用途，附 10 条避坑提醒。">
+<meta property="og:url" content="https://13302164608.github.io/docs-tools/tools.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "TechArticle",
+      "@id": "https://13302164608.github.io/docs-tools/tools.html#article",
+      "headline": "Excel 常用函数速查表：30 个高频函数 + 10 条避坑",
+      "description": "VLOOKUP、XLOOKUP、SUMIFS、COUNTIFS、IFERROR、TEXT、DATEDIF 等 30 个高频 Excel 函数的中文写法与用途，附 10 条避坑提醒。",
+      "inLanguage": "zh-CN",
+      "datePublished": "2026-11-11",
+      "dateModified": "2026-11-11",
+      "author": {
+        "@type": "Organization",
+        "name": "翔宇众成（天津）科技发展有限公司"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "翔宇众成（天津）科技发展有限公司"
+      },
+      "mainEntityOfPage": "https://13302164608.github.io/docs-tools/tools.html"
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://13302164608.github.io/docs-tools/tools.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "VLOOKUP 为什么全是 #N/A？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "多数是查找值和查找区域第一列的格式不一致：一边是文本、一边是数字，或者多了空格。先用 TRIM 去空格，再用「分列」统一格式，最后确认公式第四个参数写的是 0。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Excel 日期为什么显示成数字？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "单元格格式被设成了「常规」或「数值」，不是日期。选中这一列，设置单元格格式为「日期」即可恢复显示，数值本身没有坏。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "代做表格要多少钱？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "单表格式整理 19.9-29 元，VLOOKUP 两表匹配 49-79 元，多表合并（5 个内）59-99 元，考勤表 / 工资表 129-299 元，常规当天交付。先把文件或截图发我，免费评估后再报价。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Excel 模板在哪里下载？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "本站 模板包 页有 Excel 模板包 10 套（0.99 元，含考勤表、工资表、进销存、报销单、对账单、数据看板等，附函数速查表 PDF），可编辑源文件，拍下即发。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
   body { font-family: -apple-system,"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif; color:#1f2328; font-size:15px; line-height:1.7; margin:0; background:#f7f8fa; }
   .nav { background:#fff; border-bottom:1px solid #e6e8eb; }
@@ -111,6 +180,23 @@
 9. 批量改格式用「分列」，比手改快 10 倍。<br>
 10. 重要文件先另存备份，再动公式。
 </div>
+
+<h2>九、事实说明：VLOOKUP 的 0 与日期格式</h2>
+<p style="font-size:14px;color:#59636e;margin:0 0 10px">VLOOKUP 的第四个参数写 0 才是精确匹配；省略或写 1 会走近似匹配，数据没排序时经常返回看似随机的结果。Excel 里的日期本质是序列号（1900 年 1 月 1 日记为 1），显示成 5 位数字只是单元格格式被设成了数值或常规，不是数据坏了。</p>
+
+<h2>十、常见问题</h2>
+
+<h2>VLOOKUP 为什么全是 #N/A？</h2>
+<p style="font-size:14px;color:#59636e;margin:0 0 12px">多数是查找值和查找区域第一列的格式不一致：一边是文本、一边是数字，或者多了空格。先用 TRIM 去空格，再用「分列」统一格式，最后确认公式第四个参数写的是 0。</p>
+
+<h2>Excel 日期为什么显示成数字？</h2>
+<p style="font-size:14px;color:#59636e;margin:0 0 12px">单元格格式被设成了「常规」或「数值」，不是日期。选中这一列，设置单元格格式为「日期」即可恢复显示，数值本身没有坏。</p>
+
+<h2>代做表格要多少钱？</h2>
+<p style="font-size:14px;color:#59636e;margin:0 0 12px">单表格式整理 19.9-29 元，VLOOKUP 两表匹配 49-79 元，多表合并（5 个内）59-99 元，考勤表 / 工资表 129-299 元，常规当天交付。先把文件或截图发我，免费评估后再报价。</p>
+
+<h2>Excel 模板在哪里下载？</h2>
+<p style="font-size:14px;color:#59636e;margin:0 0 12px">本站<a href="templates.html" style="color:#0b6bcb">模板包</a>页有 Excel 模板包 10 套（0.99 元，含考勤表、工资表、进销存、报销单、对账单、数据看板等，附函数速查表 PDF），可编辑源文件，拍下即发。</p>
 
 <div class="footer">
 本速查表随《Excel 模板包》附赠 ｜ 需要代做表格？<a href="./">看这里</a> · <a href="templates.html">模板包</a><br>
