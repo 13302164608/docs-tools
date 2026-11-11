@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDF 合并在线免费｜多个 PDF 合成一个，可调顺序，文件不上传</title>
+<meta name="description" content="免费在线合并 PDF：一次选多个 PDF，拖动顺序或上下移动，一键合并成一个文件并下载。文件只在浏览器本地处理，不上传服务器；支持手机使用，无需注册。">
+<style>
+:root{--ink:#1f2328;--sub:#59636e;--line:#e6e8eb;--accent:#0b6bcb;--bg:#f7f8fa;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:9}
+.nav{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{font-weight:700;font-size:16px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.nav nav{display:flex;gap:16px;flex-wrap:wrap}
+.nav a{color:var(--sub);text-decoration:none;font-size:14px}
+.nav a:hover{color:var(--accent)}
+main{padding:32px 0 10px}
+h1{font-size:28px;margin:0 0 8px;letter-spacing:-.4px}
+.lead{color:var(--sub);font-size:15px;margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+h2{font-size:19px;margin:36px 0 10px}
+h3{font-size:15.5px;margin:22px 0 6px}
+p{font-size:15px}
+.drop{border:2px dashed #c9d3de;border-radius:12px;background:#fff;text-align:center;padding:26px 16px;cursor:pointer;transition:.15s}
+.drop.over{border-color:var(--accent);background:#eef5fd}
+.drop p{margin:0;font-size:14.5px;color:var(--sub)}
+.drop strong{color:var(--ink)}
+.hint{font-size:13px;color:#7a838d;margin-top:6px}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;text-decoration:none;padding:9px 18px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.btn:hover{filter:brightness(.93)}
+.btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+.btn.small{padding:4px 10px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.field{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--sub)}
+.field input[type=text]{font:inherit;font-size:14px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;width:170px}
+.status{font-size:14px;color:var(--sub);margin:12px 0 0;min-height:22px}
+.status.err{color:#b42318}
+.status.ok{color:#0a7a3d}
+.tbl-wrap{overflow-x:auto;margin-top:12px}
+table{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:10px;overflow:hidden;font-size:13.5px}
+th,td{padding:9px 10px;text-align:left;border-bottom:1px solid var(--line);vertical-align:middle}
+th{background:#f0f3f7;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.name{max-width:230px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+td.num{white-space:nowrap;color:var(--sub)}
+.acts{white-space:nowrap}
+.acts button{margin-right:4px}
+.bad{color:#b42318}
+.note{background:#fff;border-left:3px solid var(--accent);padding:14px 16px;border-radius:6px;font-size:14px;color:var(--sub);margin:18px 0}
+.related{font-size:14px;color:var(--sub);margin-top:26px}
+.related a{color:var(--accent);text-decoration:none;margin-right:14px}
+.cta-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin:30px 0 0}
+.cta-box p{margin:0 0 12px;color:var(--sub);font-size:14.5px}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:11px 22px;border-radius:8px;font-weight:600;font-size:15px}
+footer{border-top:1px solid var(--line);margin-top:44px;padding:24px 0 40px;color:var(--sub);font-size:13px}
+footer a{color:var(--sub)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:600px){h1{font-size:23px}.nav nav{gap:13px}.nav a{font-size:12.5px}.brand{font-size:15px}.drop{padding:20px 12px}.field input[type=text]{width:130px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="./">文档代做</a>
+  <nav><a href="./">首页</a><a href="templates.html">模板包</a><a href="index.html#free-tools">免费工具</a><a href="tools.html">Excel 速查</a></nav>
+</div></header>
+
+<main class="wrap">
+  <h1>PDF 合并（在线免费）</h1>
+  <p class="lead">选多个 PDF → 调整先后顺序 → 合成一个文件下载。<strong>文件不上传</strong>，合并过程在你的浏览器里完成。</p>
+
+  <div class="drop" id="drop" tabindex="0" role="button">
+    <p><strong>点击选择 PDF</strong>，或把文件拖到这里</p>
+    <p class="hint">可多选；加密（设了打开密码）的 PDF 无法合并</p>
+    <input type="file" id="fileInput" accept="application/pdf,.pdf" multiple class="sr" aria-label="选择 PDF 文件">
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="toolbar">
+      <button class="btn" id="mergeBtn" disabled>合并成一个 PDF</button>
+      <button class="btn ghost" id="clearBtn">清空列表</button>
+      <label class="field">文件名 <input type="text" id="outName" value="合并结果" aria-label="输出文件名"></label>
+    </div>
+    <p class="status" id="status" aria-live="polite">正在加载 PDF 处理库…</p>
+    <div class="tbl-wrap" id="listWrap" style="display:none">
+      <table>
+        <thead><tr><th>顺序</th><th>文件</th><th>页数</th><th>大小</th><th>操作</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="note">合并只复制页面内容：<strong>目录书签、表单域、部分批注不会保留</strong>；原件不会被修改，输出是一个新文件。</div>
+
+  <h2>怎么用</h2>
+  <p>① 点上面的框选 PDF（可一次选多个）；② 用「上移 / 下移」调整顺序；③ 点「合并成一个 PDF」，浏览器会直接下载合并后的文件。整个文件在内存里处理，关掉页面就没了，网站上不留副本。</p>
+  <p>手机也能用：选文件、合并、下载都在浏览器里完成，文件特别大（比如 50MB 以上的扫描件）时手机可能慢一点，建议一次不超过 20 个文件。</p>
+
+  <h2>常见问题</h2>
+  <h3>为什么提示「已加密」？</h3>
+  <p>设了打开密码或权限密码的 PDF 需要先解除保护（用原密码另存一份无密码副本）才能合并。这不是收费项，浏览器里无法绕过密码。</p>
+  <h3>合并后顺序不对怎么办？</h3>
+  <p>用列表里的「上移 / 下移」调整后再合并。合并顺序就是列表从上到下。</p>
+  <h3>要拆页、删页、加水印呢？</h3>
+  <p>这些需求可以直接找我代做：合并拆分、删页旋转、加水印、压缩、转 Word / Excel，常规 1 小时内交付。</p>
+  <h3>为什么第一次打开要联网？</h3>
+  <p>合并功能要用到 PDF 处理库（约 300KB），从 CDN 加载一次后浏览器会缓存；之后断网也能用。你的 PDF 始终没有上传。</p>
+
+  <div class="related">相关免费工具：<a href="compress.html">图片批量压缩</a><a href="csv-json.html">CSV ⇄ JSON</a><a href="char-count.html">字数统计</a><a href="index.html#free-tools">全部工具</a></div>
+
+  <div class="cta-box">
+    <p>要合并几十个合同、要按目录拆页、还要加页码和水印？这种批量活我按件做，当天交。</p>
+    <a class="cta" href="./index.html">需要代做？看服务与价格</a>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>文档代做 · 当天交付 ｜ <a href="./index.html">首页</a> · <a href="templates.html">模板包</a> · <a href="tools.html">Excel 速查</a></p>
+  <p>翔宇众成（天津）科技发展有限公司</p>
+</footer>
+
+<script>
+'use strict';
+/* ---------- 依赖加载（pdf-lib，仅此一项需要联网） ---------- */
+var PDF_LIB_URLS = [
+  'https://cdn.jsdelivr.net/npm/pdf-lib@1.17.1/dist/pdf-lib.min.js',
+  'https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js'
+];
+var libState = { ready: false, error: null, loading: false };
+
+function loadPdfLib(i) {
+  return new Promise(function (resolve, reject) {
+    if (window.PDFLib) return resolve();
+    if (i >= PDF_LIB_URLS.length) return reject(new Error('PDF 处理库加载失败：请检查网络后刷新页面'));
+    var s = document.createElement('script');
+    s.src = PDF_LIB_URLS[i];
+    s.async = true;
+    s.onload = function () {
+      if (window.PDFLib) resolve();
+      else loadPdfLib(i + 1).then(resolve, reject);
+    };
+    s.onerror = function () { loadPdfLib(i + 1).then(resolve, reject); };
+    document.head.appendChild(s);
+  });
+}
+function ensureLib() {
+  if (window.PDFLib) { libState.ready = true; return Promise.resolve(); }
+  libState.loading = true;
+  return loadPdfLib(0).then(function () { libState.ready = true; libState.loading = false; });
+}
+
+/* ---------- 核心逻辑（全局，便于自检） ---------- */
+function humanSize(n) {
+  if (n < 1024) return n + ' B';
+  if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+  return (n / 1024 / 1024).toFixed(2) + ' MB';
+}
+function readArrayBuffer(file) {
+  if (file.arrayBuffer) return file.arrayBuffer();
+  return new Promise(function (resolve, reject) {
+    var fr = new FileReader();
+    fr.onload = function () { resolve(fr.result); };
+    fr.onerror = function () { reject(new Error('读取文件失败')); };
+    fr.readAsArrayBuffer(file);
+  });
+}
+/* 读取单个 PDF，返回 {doc, pageCount}；加密/损坏会 reject 中文原因 */
+function readPdfDoc(file) {
+  return ensureLib().then(function () {
+    return readArrayBuffer(file);
+  }).then(function (buffer) {
+    return window.PDFLib.PDFDocument.load(buffer, { updateMetadata: false }).then(function (doc) {
+      return { doc: doc, pageCount: doc.getPageCount(), buffer: buffer };
+    });
+  }).catch(function (err) {
+    var msg = String((err && err.message) || err || '');
+    if (/encrypt/i.test(msg)) throw new Error('已加密，需先解除密码保护');
+    if (/is not a PDF|Failed to parse|Invalid PDF|Expected instance of PDFDict/i.test(msg)) throw new Error('不是有效的 PDF，或文件已损坏');
+    throw new Error('读取失败：' + (msg || '未知错误'));
+  });
+}
+/* 合并：items = [{doc}]（保持顺序），返回 Uint8Array */
+function mergePdfItems(items, onProgress) {
+  return ensureLib().then(function () {
+    if (!items.length) throw new Error('没有可合并的文件');
+    var PDFLib = window.PDFLib;
+    var out = PDFLib.PDFDocument.create();
+    out.setProducer('文档代做 · PDF合并');
+    out.setCreator('文档代做 免费工具');
+    var total = items.length;
+    function step(i) {
+      if (i >= total) {
+        return out.save({ useObjectStreams: true }).then(function (bytes) {
+          return { bytes: bytes, pageCount: out.getPageCount() };
+        });
+      }
+      var src = items[i].doc;
+      if (onProgress) onProgress(i + 1, total);
+      return out.copyPages(src, src.getPageIndices()).then(function (pages) {
+        pages.forEach(function (p) { out.addPage(p); });
+        return step(i + 1);
+      });
+    }
+    return step(0);
+  });
+}
+
+/* ---------- 界面 ---------- */
+var drop = document.getElementById('drop');
+var fileInput = document.getElementById('fileInput');
+var mergeBtn = document.getElementById('mergeBtn');
+var clearBtn = document.getElementById('clearBtn');
+var outName = document.getElementById('outName');
+var statusEl = document.getElementById('status');
+var listWrap = document.getElementById('listWrap');
+var rowsEl = document.getElementById('rows');
+var items = [];   // {file, doc, pageCount, error}
+
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className = 'status' + (kind ? ' ' + kind : '');
+}
+function updateButtons() {
+  var ok = items.length > 0 && items.every(function (it) { return !it.error; });
+  mergeBtn.disabled = !(ok && libState.ready);
+  listWrap.style.display = items.length ? 'block' : 'none';
+}
+function renderList() {
+  rowsEl.innerHTML = '';
+  items.forEach(function (it, idx) {
+    var tr = document.createElement('tr');
+    var tdOrder = document.createElement('td');
+    tdOrder.className = 'num';
+    tdOrder.textContent = idx + 1;
+    var tdName = document.createElement('td');
+    tdName.className = 'name';
+    tdName.textContent = it.file.name;
+    tdName.title = it.file.name;
+    var tdPages = document.createElement('td');
+    tdPages.className = 'num';
+    tdPages.textContent = it.error ? '—' : (it.pageCount + ' 页');
+    var tdSize = document.createElement('td');
+    tdSize.className = 'num';
+    tdSize.textContent = humanSize(it.file.size);
+    var tdAct = document.createElement('td');
+    tdAct.className = 'acts';
+    if (it.error) {
+      var errSpan = document.createElement('span');
+      errSpan.className = 'bad';
+      errSpan.textContent = it.error;
+      tdAct.appendChild(errSpan);
+    } else {
+      var up = document.createElement('button');
+      up.className = 'btn ghost small';
+      up.textContent = '上移';
+      up.disabled = idx === 0;
+      up.addEventListener('click', function () { move(idx, -1); });
+      var down = document.createElement('button');
+      down.className = 'btn ghost small';
+      down.textContent = '下移';
+      down.disabled = idx === items.length - 1;
+      down.addEventListener('click', function () { move(idx, 1); });
+      tdAct.appendChild(up); tdAct.appendChild(down);
+    }
+    var del = document.createElement('button');
+    del.className = 'btn ghost small';
+    del.textContent = '删除';
+    del.addEventListener('click', function () { items.splice(idx, 1); renderList(); updateButtons(); });
+    tdAct.appendChild(del);
+    tr.appendChild(tdOrder); tr.appendChild(tdName); tr.appendChild(tdPages);
+    tr.appendChild(tdSize); tr.appendChild(tdAct);
+    rowsEl.appendChild(tr);
+  });
+}
+function move(idx, delta) {
+  var target = idx + delta;
+  if (target < 0 || target >= items.length) return;
+  var tmp = items[idx]; items[idx] = items[target]; items[target] = tmp;
+  renderList();
+}
+
+function addFiles(fileList) {
+  var pdfs = [];
+  for (var i = 0; i < fileList.length; i++) {
+    var f = fileList[i];
+    var isPdf = /\.pdf$/i.test(f.name) || f.type === 'application/pdf';
+    if (isPdf) pdfs.push(f);
+  }
+  if (!pdfs.length) { setStatus('没有识别到 PDF 文件，请选择 .pdf 文件。', 'err'); return; }
+  if (!libState.ready && libState.error) { setStatus('PDF 处理库没加载成功，无法读取文件。请联网后刷新页面再试。', 'err'); return; }
+  setStatus('正在读取 ' + pdfs.length + ' 个 PDF 的页数…');
+  var start = items.length;
+  pdfs.forEach(function (f) {
+    var entry = { file: f, doc: null, pageCount: 0, error: null };
+    items.push(entry);
+    renderList();
+    readPdfDoc(f).then(function (res) {
+      entry.doc = res.doc;
+      entry.pageCount = res.pageCount;
+    }).catch(function (err) {
+      entry.error = (err && err.message) || '读取失败';
+    }).then(function () {
+      renderList();
+      var pending = items.some(function (it) { return !it.doc && !it.error; });
+      if (pending) return;
+      var bad = items.filter(function (it) { return it.error; }).length;
+      var totalPages = items.reduce(function (s, it) { return s + (it.pageCount || 0); }, 0);
+      if (bad) setStatus('有 ' + bad + ' 个文件读取失败（见列表红字），请删除后再合并。', 'err');
+      else setStatus('已就绪：' + items.length + ' 个文件，共 ' + totalPages + ' 页。点「合并成一个 PDF」。');
+      updateButtons();
+    });
+  });
+}
+
+drop.addEventListener('click', function () { fileInput.click(); });
+drop.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+['dragenter', 'dragover'].forEach(function (ev) {
+  drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); });
+});
+['dragleave', 'drop'].forEach(function (ev) {
+  drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); });
+});
+drop.addEventListener('drop', function (e) {
+  if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', function () {
+  if (fileInput.files && fileInput.files.length) addFiles(fileInput.files);
+  fileInput.value = '';
+});
+clearBtn.addEventListener('click', function () {
+  items = [];
+  renderList();
+  updateButtons();
+  setStatus('已清空，重新选择 PDF 即可。');
+});
+
+mergeBtn.addEventListener('click', function () {
+  var usable = items.filter(function (it) { return it.doc && !it.error; });
+  if (!usable.length) return;
+  mergeBtn.disabled = true;
+  setStatus('正在合并 ' + usable.length + ' 个文件…');
+  mergePdfItems(usable, function (done, total) {
+    setStatus('正在复制第 ' + done + ' / ' + total + ' 个文件的页面…');
+  }).then(function (res) {
+    var blob = new Blob([res.bytes], { type: 'application/pdf' });
+    var name = (outName.value || '合并结果').replace(/\.pdf$/i, '') + '.pdf';
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = name;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 60000);
+    setStatus('合并完成：' + name + '（' + res.pageCount + ' 页，' + humanSize(blob.size) + '）已开始下载。', 'ok');
+    mergeBtn.disabled = false;
+  }).catch(function (err) {
+    setStatus('合并失败：' + ((err && err.message) || err), 'err');
+    mergeBtn.disabled = false;
+  });
+});
+
+ensureLib().then(function () {
+  libState.ready = true;
+  setStatus(items.length ? 'PDF 处理库已就绪。' : 'PDF 处理库已就绪，选择要合并的 PDF。');
+  updateButtons();
+}).catch(function (err) {
+  libState.error = err;
+  setStatus('PDF 处理库加载失败：' + err.message + '（合并功能需要联网加载一次处理库，PDF 文件本身不会上传）', 'err');
+});
+</script>
+</body>
+</html>
