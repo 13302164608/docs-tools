@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CSV 转 JSON / JSON 转 CSV 在线工具｜免费、不上传、支持 Excel 导出</title>
+<meta name="description" content="免费在线 CSV 与 JSON 互转：粘贴或上传文件，自动识别逗号/分号/制表符，支持引号内换行与转义，转换结果可一键复制或下载（CSV 带 BOM，Excel 打开不乱码）。全部本地处理，不上传文件。">
+<style>
+:root{--ink:#1f2328;--sub:#59636e;--line:#e6e8eb;--accent:#0b6bcb;--bg:#f7f8fa;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:0 20px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:9}
+.nav{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{font-weight:700;font-size:16px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.nav nav{display:flex;gap:16px;flex-wrap:wrap}
+.nav a{color:var(--sub);text-decoration:none;font-size:14px}
+.nav a:hover{color:var(--accent)}
+main{padding:32px 0 10px}
+h1{font-size:28px;margin:0 0 8px;letter-spacing:-.4px}
+.lead{color:var(--sub);font-size:15px;margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+h2{font-size:19px;margin:36px 0 10px}
+h3{font-size:15.5px;margin:22px 0 6px}
+p{font-size:15px}
+.tabs{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.tab{background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:14px;cursor:pointer;font-family:inherit;color:var(--sub)}
+.tab.active{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;text-decoration:none;padding:8px 16px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.btn:hover{filter:brightness(.93)}
+.btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+.btn.small{padding:5px 12px;font-size:13px}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.opts{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:14px;color:var(--sub);margin:10px 0}
+.opts select,.opts input[type=number]{font:inherit;font-size:14px;padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)}
+.opts label{display:flex;align-items:center;gap:5px}
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+@media(max-width:760px){.panes{grid-template-columns:1fr}}
+.pane{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.pane h3{margin:0 0 8px;font-size:14.5px;color:var(--sub);font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:8px}
+textarea{width:100%;min-height:260px;border:1px solid var(--line);border-radius:8px;padding:10px;font-family:ui-monospace,Consolas,"Courier New",monospace;font-size:13px;line-height:1.55;resize:vertical;background:#fcfdfe;color:var(--ink)}
+textarea:focus{outline:2px solid #bcd9f6;border-color:var(--accent)}
+.mini{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px;align-items:center}
+.status{font-size:13.5px;color:var(--sub);margin:10px 0 0;min-height:22px}
+.status.err{color:#b42318}
+.status.ok{color:#0a7a3d}
+.note{background:#fff;border-left:3px solid var(--accent);padding:14px 16px;border-radius:6px;font-size:14px;color:var(--sub);margin:18px 0}
+.related{font-size:14px;color:var(--sub);margin-top:26px}
+.related a{color:var(--accent);text-decoration:none;margin-right:14px}
+.cta-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin:30px 0 0}
+.cta-box p{margin:0 0 12px;color:var(--sub);font-size:14.5px}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:11px 22px;border-radius:8px;font-weight:600;font-size:15px}
+footer{border-top:1px solid var(--line);margin-top:44px;padding:24px 0 40px;color:var(--sub);font-size:13px}
+footer a{color:var(--sub)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:600px){h1{font-size:23px}.nav nav{gap:13px}.nav a{font-size:12.5px}.brand{font-size:15px}textarea{min-height:200px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="./">文档代做</a>
+  <nav><a href="./">首页</a><a href="templates.html">模板包</a><a href="index.html#free-tools">免费工具</a><a href="tools.html">Excel 速查</a></nav>
+</div></header>
+
+<main class="wrap">
+  <h1>CSV ⇄ JSON 互转（在线免费）</h1>
+  <p class="lead">粘贴或上传文件，双向转换，自动识别分隔符，支持引号里的逗号和换行。结果可一键复制或下载，文件不上传。</p>
+
+  <div class="card">
+    <div class="tabs" role="tablist">
+      <button class="tab active" id="tabCsv2Json" role="tab" aria-selected="true">CSV → JSON</button>
+      <button class="tab" id="tabJson2Csv" role="tab" aria-selected="false">JSON → CSV</button>
+      <button class="btn ghost small" id="sampleBtn" style="margin-left:auto">载入示例</button>
+      <button class="btn ghost small" id="clearBtn">清空</button>
+      <label class="field" style="display:none">上传<input type="file" id="fileInput" accept=".csv,.tsv,.txt,.json,text/csv,application/json" class="sr" aria-label="上传文件"></label>
+      <button class="btn ghost small" id="uploadBtn" type="button">上传文件</button>
+    </div>
+
+    <div class="opts" id="optsCsv">
+      <label>分隔符
+        <select id="delimiterSel">
+          <option value="auto" selected>自动识别</option>
+          <option value=",">逗号 ,</option>
+          <option value=";">分号 ;</option>
+          <option value="\t">制表符 Tab</option>
+          <option value="|">竖线 |</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="headerChk" checked> 第一行是表头</label>
+      <label><input type="checkbox" id="autoTypeChk"> 数字/布尔/null 自动转类型</label>
+      <label>缩进
+        <select id="indentSel">
+          <option value="2" selected>2 空格</option>
+          <option value="4">4 空格</option>
+          <option value="0">压缩成一行</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="opts" id="optsJson" style="display:none">
+      <label>输出分隔符
+        <select id="outDelimSel">
+          <option value="," selected>逗号 ,</option>
+          <option value=";">分号 ;</option>
+          <option value="\t">制表符 Tab</option>
+        </select>
+      </label>
+      <label><input type="checkbox" id="crlfChk"> 用 CRLF 换行（老版 Excel 更稳）</label>
+    </div>
+
+    <div class="panes">
+      <div class="pane">
+        <h3><span id="inLabel">输入 CSV</span><span id="inStat" style="font-weight:400"></span></h3>
+        <textarea id="inputArea" spellcheck="false" placeholder="粘贴 CSV，例如：&#10;姓名,部门,金额&#10;张三,市场部,1200&#10;李四,&quot;销售部,华东&quot;,980"></textarea>
+        <div class="mini">
+          <button class="btn small" id="runBtn">转换</button>
+          <button class="btn ghost small" id="pasteBtn">从剪贴板粘贴</button>
+        </div>
+      </div>
+      <div class="pane">
+        <h3><span id="outLabel">输出 JSON</span><span id="outStat" style="font-weight:400"></span></h3>
+        <textarea id="outputArea" spellcheck="false" readonly placeholder="转换结果会出现在这里"></textarea>
+        <div class="mini">
+          <button class="btn small" id="copyBtn">复制结果</button>
+          <button class="btn ghost small" id="downloadBtn">下载文件</button>
+        </div>
+      </div>
+    </div>
+    <p class="status" id="status" aria-live="polite">选择方向后粘贴内容，会自动转换。</p>
+  </div>
+
+  <div class="note">从 Excel 导出的 CSV 如果是中文乱码，说明文件是 GBK 编码：在 Excel 里「另存为 → CSV UTF-8」再上传即可。本工具按 UTF-8 读取。</div>
+
+  <h2>这个工具能处理什么</h2>
+  <p>CSV 转 JSON：把 Excel / 表格导出的数据变成接口能用的 JSON 数组，字段名取第一行；勾选「数字/布尔/null 自动转类型」后，<code>"1200"</code> 会变成 <code>1200</code>，空单元格变成 <code>null</code>。JSON 转 CSV：把接口返回的 JSON 数组摊平成表格，字段取所有对象的并集，缺的格子留空，嵌套对象/数组会转成 JSON 字符串放进单元格。</p>
+  <p>解析器是完整的带引号 CSV 解析：字段里含逗号、引号（用两个引号转义）、换行都能正确切分；分隔符支持逗号、分号、制表符、竖线，也能自动识别。做数据清洗时先在这里把格式转对，再粘回 Excel，比手动分列稳。</p>
+
+  <h2>常见问题</h2>
+  <h3>为什么下载的 CSV 用 Excel 打开不乱码？</h3>
+  <p>下载时会自动写入 UTF-8 BOM，Windows 版 Excel 靠这个标记识别中文。如果公司电脑是老版本 Excel，可以勾上「用 CRLF 换行」。</p>
+  <h3>JSON 是嵌套结构（对象里套对象）能转吗？</h3>
+  <p>能转，但只能摊到第一层：嵌套值会变成一段 JSON 字符串放在单元格里。真正要展平多层（比如订单里的商品明细拆成多行），这属于数据清洗，可以直接找我代做。</p>
+  <h3>文件有大小限制吗？</h3>
+  <p>没有硬限制，取决于浏览器内存。几万行的 CSV 一般没问题，几十万行建议先用脚本处理。</p>
+  <h3>数据会被上传吗？</h3>
+  <p>不会。解析和转换全部在浏览器里完成，页面没有上传接口。</p>
+
+  <div class="related">相关免费工具：<a href="compress.html">图片批量压缩</a><a href="pdf-merge.html">PDF 合并</a><a href="char-count.html">字数统计</a><a href="index.html#free-tools">全部工具</a></div>
+
+  <div class="cta-box">
+    <p>数据格式太乱、字段要拆要合、几万行要清洗成能透视的表？把文件发我，免费评估后报价。</p>
+    <a class="cta" href="./index.html">需要代做？看服务与价格</a>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>文档代做 · 当天交付 ｜ <a href="./index.html">首页</a> · <a href="templates.html">模板包</a> · <a href="tools.html">Excel 速查</a></p>
+  <p>翔宇众成（天津）科技发展有限公司</p>
+</footer>
+
+<script>
+'use strict';
+/* ================= 核心转换逻辑（全局，便于自检） ================= */
+
+/* 自动识别分隔符：统计前几行引号外的候选字符出现次数，取最多 */
+function detectDelimiter(text) {
+  var candidates = [',', ';', '\t', '|'];
+  var sample = text.split(/\r?\n/).slice(0, 5).join('\n');
+  var best = ',', bestCount = 0;
+  candidates.forEach(function (c) {
+    var count = 0, inQuotes = false;
+    for (var i = 0; i < sample.length; i++) {
+      var ch = sample[i];
+      if (ch === '"') {
+        if (inQuotes && sample[i + 1] === '"') { i++; continue; }
+        inQuotes = !inQuotes;
+      } else if (!inQuotes && ch === c) {
+        count++;
+      }
+    }
+    if (count > bestCount) { bestCount = count; best = c; }
+  });
+  return best;
+}
+
+/* 解析 CSV -> 二维数组（处理引号包裹、"" 转义、引号内换行、CRLF） */
+function parseCSV(text, delimiter) {
+  text = String(text == null ? '' : text).replace(/^\uFEFF/, '');
+  var delim = delimiter || detectDelimiter(text);
+  var rows = [], row = [], field = '', inQuotes = false;
+  var i = 0;
+  while (i < text.length) {
+    var ch = text[i];
+    if (inQuotes) {
+      if (ch === '"') {
+        if (text[i + 1] === '"') { field += '"'; i += 2; continue; }
+        inQuotes = false; i++; continue;
+      }
+      field += ch; i++; continue;
+    }
+    if (ch === '"') { inQuotes = true; i++; continue; }
+    if (ch === delim) { row.push(field); field = ''; i++; continue; }
+    if (ch === '\r' || ch === '\n') {
+      if (ch === '\r' && text[i + 1] === '\n') i++;
+      row.push(field); field = '';
+      rows.push(row); row = [];
+      i++; continue;
+    }
+    field += ch; i++;
+  }
+  if (field !== '' || row.length) { row.push(field); rows.push(row); }
+  /* 丢掉纯空行 */
+  return rows.filter(function (r) { return !(r.length === 1 && r[0] === ''); });
+}
+
+function coerceValue(v) {
+  if (v === '') return null;
+  /* 纯数字才转类型；007 这种前导零按字符串保留（多半是编号/电话） */
+  if (/^-?\d+(\.\d+)?([eE][+-]?\d+)?$/.test(v) && !/^-?0\d/.test(v)) {
+    var n = Number(v);
+    return isFinite(n) ? n : v;
+  }
+  if (/^(true|false)$/i.test(v)) return v.toLowerCase() === 'true';
+  if (/^(null|NULL)$/.test(v)) return null;
+  return v;
+}
+
+/* CSV 文本 -> JSON 文本。opts={delimiter, header, autoType, indent} */
+function csvToJson(text, opts) {
+  opts = opts || {};
+  var rows = parseCSV(text, opts.delimiter === 'auto' ? null : opts.delimiter);
+  if (!rows.length) throw new Error('没有解析到任何数据行');
+  var indent = opts.indent == null ? 2 : opts.indent;
+  var data;
+  if (opts.header === false) {
+    data = rows.map(function (r) {
+      return r.map(function (v) { return opts.autoType ? coerceValue(v) : v; });
+    });
+  } else {
+    var headers = rows[0].map(function (h, idx) {
+      var name = String(h == null ? '' : h).trim();
+      return name || ('column_' + (idx + 1));
+    });
+    var seen = {};
+    headers = headers.map(function (h) {
+      var name = h, n = 1;
+      while (Object.prototype.hasOwnProperty.call(seen, name)) { n++; name = h + '_' + n; }
+      seen[name] = true;
+      return name;
+    });
+    data = rows.slice(1).map(function (r) {
+      var obj = {};
+      for (var j = 0; j < headers.length; j++) {
+        var raw = j < r.length ? r[j] : '';
+        obj[headers[j]] = opts.autoType ? coerceValue(raw) : raw;
+      }
+      /* 多出来的列 */
+      for (var k = headers.length; k < r.length; k++) {
+        obj['extra_' + (k - headers.length + 1)] = opts.autoType ? coerceValue(r[k]) : r[k];
+      }
+      return obj;
+    });
+  }
+  return JSON.stringify(data, null, indent || 0);
+}
+
+function escapeCsvField(value, delimiter) {
+  var s = (value == null) ? '' : String(value);
+  if (typeof value === 'object') s = JSON.stringify(value);
+  var needQuote = s.indexOf('"') >= 0 || s.indexOf('\n') >= 0 || s.indexOf('\r') >= 0 ||
+    (delimiter ? s.indexOf(delimiter) >= 0 : false) ||
+    s.charAt(0) === ' ' || s.charAt(s.length - 1) === ' ';
+  if (!needQuote) return s;
+  return '"' + s.replace(/"/g, '""') + '"';
+}
+
+/* JSON 文本 -> CSV 文本。opts={delimiter, crlf} */
+function jsonToCsv(text, opts) {
+  opts = opts || {};
+  var delimiter = opts.delimiter || ',';
+  var parsed;
+  try {
+    parsed = JSON.parse(String(text).replace(/^\uFEFF/, ''));
+  } catch (e) {
+    throw new Error('JSON 格式有误：' + e.message);
+  }
+  var list;
+  if (Array.isArray(parsed)) list = parsed;
+  else if (parsed && typeof parsed === 'object') list = [parsed];
+  else throw new Error('JSON 顶层需要是数组或对象');
+
+  var headers = [];
+  var seen = {};
+  list.forEach(function (item) {
+    if (item && typeof item === 'object' && !Array.isArray(item)) {
+      Object.keys(item).forEach(function (k) {
+        if (!Object.prototype.hasOwnProperty.call(seen, k)) { seen[k] = true; headers.push(k); }
+      });
+    }
+  });
+  var newline = opts.crlf ? '\r\n' : '\n';
+  var lines = [];
+  if (!headers.length) {
+    /* 纯数组或原始值数组：单列 value */
+    if (!list.length) throw new Error('JSON 数组是空的');
+    headers = ['value'];
+    list.forEach(function (item) {
+      lines.push(escapeCsvField(item, delimiter));
+    });
+    return headers[0] + newline + lines.join(newline);
+  }
+  lines.push(headers.map(function (h) { return escapeCsvField(h, delimiter); }).join(delimiter));
+  list.forEach(function (item) {
+    var cells = headers.map(function (h) {
+      if (item && typeof item === 'object') return escapeCsvField(item[h], delimiter);
+      return escapeCsvField(item, delimiter);
+    });
+    lines.push(cells.join(delimiter));
+  });
+  return lines.join(newline);
+}
+
+/* ================= 界面 ================= */
+var mode = 'csv2json';
+var tabCsv = document.getElementById('tabCsv2Json');
+var tabJson = document.getElementById('tabJson2Csv');
+var optsCsv = document.getElementById('optsCsv');
+var optsJson = document.getElementById('optsJson');
+var delimiterSel = document.getElementById('delimiterSel');
+var headerChk = document.getElementById('headerChk');
+var autoTypeChk = document.getElementById('autoTypeChk');
+var indentSel = document.getElementById('indentSel');
+var outDelimSel = document.getElementById('outDelimSel');
+var crlfChk = document.getElementById('crlfChk');
+var inputArea = document.getElementById('inputArea');
+var outputArea = document.getElementById('outputArea');
+var inLabel = document.getElementById('inLabel');
+var outLabel = document.getElementById('outLabel');
+var inStat = document.getElementById('inStat');
+var outStat = document.getElementById('outStat');
+var statusEl = document.getElementById('status');
+var runBtn = document.getElementById('runBtn');
+var copyBtn = document.getElementById('copyBtn');
+var downloadBtn = document.getElementById('downloadBtn');
+var clearBtn = document.getElementById('clearBtn');
+var sampleBtn = document.getElementById('sampleBtn');
+var pasteBtn = document.getElementById('pasteBtn');
+var uploadBtn = document.getElementById('uploadBtn');
+var fileInput = document.getElementById('fileInput');
+var lastOutput = '';
+
+var SAMPLE_CSV = '姓名,部门,金额,备注\n张三,市场部,1200,"含税, 已开票"\n李四,销售部,980,\n王五,技术部,1500,"他说：""下周付款"""\n';
+var SAMPLE_JSON = '[\n  {"姓名": "张三", "部门": "市场部", "金额": 1200},\n  {"姓名": "李四", "部门": "销售部", "金额": 980},\n  {"姓名": "王五", "部门": "技术部", "金额": 1500}\n]';
+
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className = 'status' + (kind ? ' ' + kind : '');
+}
+function switchMode(next) {
+  mode = next;
+  var isCsv = next === 'csv2json';
+  tabCsv.classList.toggle('active', isCsv);
+  tabJson.classList.toggle('active', !isCsv);
+  tabCsv.setAttribute('aria-selected', isCsv ? 'true' : 'false');
+  tabJson.setAttribute('aria-selected', isCsv ? 'false' : 'true');
+  optsCsv.style.display = isCsv ? 'flex' : 'none';
+  optsJson.style.display = isCsv ? 'none' : 'flex';
+  inLabel.textContent = isCsv ? '输入 CSV' : '输入 JSON';
+  outLabel.textContent = isCsv ? '输出 JSON' : '输出 CSV';
+  inputArea.value = '';
+  outputArea.value = '';
+  inStat.textContent = '';
+  outStat.textContent = '';
+  lastOutput = '';
+  convert();
+}
+tabCsv.addEventListener('click', function () { switchMode('csv2json'); });
+tabJson.addEventListener('click', function () { switchMode('json2csv'); });
+
+function convert() {
+  var text = inputArea.value;
+  if (!text.trim()) {
+    outputArea.value = '';
+    lastOutput = '';
+    inStat.textContent = '';
+    outStat.textContent = '';
+    setStatus('粘贴内容或上传文件后自动转换。');
+    return;
+  }
+  try {
+    if (mode === 'csv2json') {
+      var delim = delimiterSel.value === 'auto' ? null : delimiterSel.value;
+      var rows = parseCSV(text, delim);
+      var out = csvToJson(text, {
+        delimiter: delimiterSel.value,
+        header: headerChk.checked,
+        autoType: autoTypeChk.checked,
+        indent: parseInt(indentSel.value, 10) || 0
+      });
+      lastOutput = out;
+      outputArea.value = out;
+      var cols = rows.length ? rows[0].length : 0;
+      inStat.textContent = rows.length + ' 行 × ' + cols + ' 列';
+      var parsedOut = JSON.parse(out);
+      outStat.textContent = parsedOut.length + ' 条记录';
+      setStatus('转换完成：' + rows.length + ' 行 CSV → ' + parsedOut.length + ' 条 JSON。', 'ok');
+    } else {
+      var csv = jsonToCsv(text, {
+        delimiter: outDelimSel.value,
+        crlf: crlfChk.checked
+      });
+      lastOutput = csv;
+      outputArea.value = csv;
+      var parsedIn = JSON.parse(text.replace(/^\uFEFF/, ''));
+      var count = Array.isArray(parsedIn) ? parsedIn.length : 1;
+      inStat.textContent = count + ' 条记录';
+      var outLines = csv.split(/\r?\n/);
+      outStat.textContent = (outLines.length - 1) + ' 行 × ' + (outLines[0] ? outLines[0].split(outDelimSel.value).length : 0) + ' 列';
+      setStatus('转换完成：' + count + ' 条 JSON → ' + (outLines.length - 1) + ' 行 CSV。', 'ok');
+    }
+  } catch (err) {
+    outputArea.value = '';
+    lastOutput = '';
+    outStat.textContent = '';
+    setStatus('转换失败：' + ((err && err.message) || err), 'err');
+  }
+}
+
+var timer = null;
+inputArea.addEventListener('input', function () {
+  clearTimeout(timer);
+  timer = setTimeout(function () {
+    if (inputArea.value.length > 200000) { setStatus('内容较大，点「转换」按钮处理。'); return; }
+    convert();
+  }, 300);
+});
+runBtn.addEventListener('click', convert);
+
+copyBtn.addEventListener('click', function () {
+  if (!lastOutput) { setStatus('还没有可复制的结果。', 'err'); return; }
+  function fallback() {
+    outputArea.removeAttribute('readonly');
+    outputArea.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    outputArea.setAttribute('readonly', 'readonly');
+    setStatus(ok ? '已复制到剪贴板。' : '复制失败，请手动全选复制。', ok ? 'ok' : 'err');
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(lastOutput).then(function () {
+      setStatus('已复制到剪贴板。', 'ok');
+    }).catch(fallback);
+  } else {
+    fallback();
+  }
+});
+
+downloadBtn.addEventListener('click', function () {
+  if (!lastOutput) { setStatus('还没有可下载的结果。', 'err'); return; }
+  var isCsv = mode === 'json2csv';
+  var blob;
+  if (isCsv) {
+    blob = new Blob(['\uFEFF' + lastOutput], { type: 'text/csv;charset=utf-8' });
+  } else {
+    blob = new Blob([lastOutput], { type: 'application/json;charset=utf-8' });
+  }
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = isCsv ? '转换结果.csv' : '转换结果.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function () { URL.revokeObjectURL(url); }, 30000);
+  setStatus('已开始下载 ' + a.download + '。', 'ok');
+});
+
+clearBtn.addEventListener('click', function () {
+  inputArea.value = '';
+  outputArea.value = '';
+  lastOutput = '';
+  inStat.textContent = '';
+  outStat.textContent = '';
+  setStatus('已清空。');
+});
+sampleBtn.addEventListener('click', function () {
+  inputArea.value = mode === 'csv2json' ? SAMPLE_CSV : SAMPLE_JSON;
+  convert();
+});
+pasteBtn.addEventListener('click', function () {
+  if (!navigator.clipboard || !navigator.clipboard.readText) {
+    setStatus('当前浏览器不允许读取剪贴板，请直接粘贴到输入框。', 'err');
+    inputArea.focus();
+    return;
+  }
+  navigator.clipboard.readText().then(function (t) {
+    inputArea.value = t;
+    convert();
+  }).catch(function () {
+    setStatus('读取剪贴板被拒绝，请直接粘贴到输入框。', 'err');
+    inputArea.focus();
+  });
+});
+uploadBtn.addEventListener('click', function () { fileInput.click(); });
+fileInput.addEventListener('change', function () {
+  var f = fileInput.files && fileInput.files[0];
+  if (!f) return;
+  if (/\.json$/i.test(f.name) && mode === 'csv2json') switchMode('json2csv');
+  if (/\.(csv|tsv|txt)$/i.test(f.name) && mode === 'json2csv') switchMode('csv2json');
+  var reader = new FileReader();
+  reader.onload = function () {
+    inputArea.value = String(reader.result || '');
+    setStatus('已读取 ' + f.name + '（' + humanFileSize(f.size) + '）。');
+    convert();
+  };
+  reader.onerror = function () { setStatus('读取文件失败。', 'err'); };
+  reader.readAsText(f, 'UTF-8');
+  fileInput.value = '';
+});
+function humanFileSize(n) {
+  if (n < 1024) return n + ' B';
+  if (n < 1024 * 1024) return (n / 1024).toFixed(1) + ' KB';
+  return (n / 1024 / 1024).toFixed(2) + ' MB';
+}
+convert();
+</script>
+</body>
+</html>
