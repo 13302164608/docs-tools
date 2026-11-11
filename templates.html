@@ -13,7 +13,8 @@ body{margin:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,s
 header{background:#fff;border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:56px}
 .brand{font-weight:700;text-decoration:none;color:var(--ink)}
-.nav a{color:var(--sub);text-decoration:none;font-size:14px;margin-left:18px}
+.nav nav{display:flex;gap:16px;flex-wrap:wrap}
+.nav a{color:var(--sub);text-decoration:none;font-size:14px;white-space:nowrap}
 main{padding:40px 0}
 h1{font-size:28px;margin:0 0 10px}
 .lead{color:var(--sub);margin:0 0 28px}
@@ -32,7 +33,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--sub);fon
 <body>
 <header><div class="wrap nav">
   <a class="brand" href="./">文档代做</a>
-  <nav><a href="./">首页</a><a href="tools.html">Excel 速查</a></nav>
+  <nav><a href="./">首页</a><a href="index.html#free-tools">免费工具</a><a href="tools.html">Excel 速查</a></nav>
 </div></header>
 
 <main class="wrap">
@@ -80,6 +81,7 @@ footer{border-top:1px solid var(--line);padding:24px 0 40px;color:var(--sub);fon
 
 <footer class="wrap">
   <p>翔宇众成（天津）科技发展有限公司 ｜ 虚拟商品，交付后可编辑源文件</p>
+  <p>免费工具：<a href="compress.html">图片压缩</a> · <a href="pdf-merge.html">PDF 合并</a> · <a href="csv-json.html">CSV ⇄ JSON</a> · <a href="char-count.html">字数统计</a></p>
 </footer>
 </body>
 </html>
