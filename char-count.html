@@ -5,6 +5,71 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>字数统计在线工具｜中英文分开计数、去空格、段落数、阅读时长</title>
 <meta name="description" content="免费在线字数统计：实时统计总字符数、不含空格字符数、中文汉字数、英文单词数、数字、标点、段落数与预计阅读时长，附小红书 / 公众号字数参考。粘贴即算，内容不上传。">
+<link rel="canonical" href="https://13302164608.github.io/docs-tools/char-count.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="文档代做">
+<meta property="og:title" content="字数统计在线工具｜中英文分开计数、去空格、段落数、阅读时长">
+<meta property="og:description" content="实时统计总字符数、不含空格字符数、中文汉字、英文单词、标点、段落数与阅读时长，附小红书 / 公众号字数参考。粘贴即算，内容不上传。">
+<meta property="og:url" content="https://13302164608.github.io/docs-tools/char-count.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "字数统计（在线免费）",
+      "url": "https://13302164608.github.io/docs-tools/char-count.html",
+      "description": "实时统计中文字数、英文单词数、不含空格字符数、标点、段落数与预计阅读时长，并按小红书 / 公众号字数参考显示余量，内容不上传。",
+      "applicationCategory": "Productivity",
+      "operatingSystem": "Any",
+      "browserRequirements": "现代浏览器（Chrome、Edge、Safari、Firefox）",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "featureList": [
+        "中英文分开计数",
+        "含 / 不含空格两种字符数",
+        "段落数与非空行数",
+        "预计阅读时长",
+        "小红书 / 公众号字数上限比对",
+        "复制纯文本（去多余空行）"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "和 Word 的字数为什么不一样？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Word 的「字数」把连续的汉字串按字计，对中英混排和标点的处理与本工具不同，差几个字是正常的。要交稿算字数，按对方要求的工具为准。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "小红书 1000 字包括标点吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "平台一般按字符计，标点和 emoji 都占位。写之前留 50-100 字余量更稳，规则以平台发布页提示为准，平台随时可能调整。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "内容会被保存吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不会。统计全部在浏览器里完成，刷新页面就没了，也没有上传接口。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
 <style>
 :root{--ink:#1f2328;--sub:#59636e;--line:#e6e8eb;--accent:#0b6bcb;--bg:#f7f8fa;--card:#fff;--good:#0a7a3d;--warn:#b54708;--bad:#b42318}
 *{box-sizing:border-box}
@@ -114,12 +179,16 @@ footer a{color:var(--sub)}
   <p>公众号和小红书都有字数上限，写到一半不知道超没超，粘进来一眼就看到；自媒体作者关心「多少字读完要几分钟」，这里按中文 300 字/分钟、英文 200 词/分钟估。写论文、写简历时看「汉字数 + 英文单词数」比 Word 的「字数」更贴近真实篇幅，因为 Word 对中英混排的统计口径和平台不一样。</p>
   <p>「复制纯文本」会去掉每行行尾空格、把连续空行压成一个，再把结果放进剪贴板——粘到公众号后台、Word、记事本里都不会带一堆空行和全角空格。</p>
 
-  <h2>常见问题</h2>
-  <h3>和 Word 的字数为什么不一样？</h3>
+  <h2>格式的事实说明</h2>
+  <p>本工具按 Unicode 逐个计字符：一个汉字、一个 emoji、一个全角标点都算 1 个字符。英文单词按连续字母切分，don't、well-known 各算 1 个词。段落数按空行切分，只有换行（Shift+Enter）不另起一段。阅读时长按中文 300 字/分钟、英文 200 词/分钟估算，取两者中较长的那个。</p>
+
+  <h2>和 Word 的字数为什么不一样？</h2>
   <p>Word 的「字数」把连续的汉字串按字计，对中英混排和标点的处理与本工具不同，差几个字是正常的。要交稿算字数，按对方要求的工具为准。</p>
-  <h3>小红书 1000 字包括标点吗？</h3>
-  <p>平台一般按字符计，标点和 emoji 都占位。写之前留 50-100 字余量最稳，规则以平台发布页为准。</p>
-  <h3>内容会被保存吗？</h3>
+
+  <h2>小红书 1000 字包括标点吗？</h2>
+  <p>平台一般按字符计，标点和 emoji 都占位。写之前留 50-100 字余量更稳，规则以平台发布页提示为准，平台随时可能调整。</p>
+
+  <h2>内容会被保存吗？</h2>
   <p>不会。统计全部在浏览器里完成，刷新页面就没了，也没有上传接口。</p>
 
   <div class="related">相关免费工具：<a href="compress.html">图片批量压缩</a><a href="pdf-merge.html">PDF 合并</a><a href="csv-json.html">CSV ⇄ JSON</a><a href="index.html#free-tools">全部工具</a></div>
