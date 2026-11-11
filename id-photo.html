@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>证件照在线制作｜一寸二寸裁尺寸·白蓝红换底色·压到指定KB，免费</title>
+<meta name="description" content="免费在线制作报名证件照：上传照片自动裁成一寸 295×413、二寸 413×579、小二寸 413×531，白/蓝/红底一键替换，JPEG 质量可调并可压到指定 KB，支持批量逐张下载。全部在浏览器本地处理，照片不上传。">
+<link rel="canonical" href="https://13302164608.github.io/docs-tools/id-photo.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="文档代做">
+<meta property="og:title" content="证件照在线制作｜一寸二寸裁尺寸·白蓝红换底色·压到指定KB">
+<meta property="og:description" content="上传照片自动裁成报名常用规格，白/蓝/红底一键替换，JPEG 质量可调、可压到指定 KB，支持批量逐张下载，照片不上传。">
+<meta property="og:url" content="https://13302164608.github.io/docs-tools/id-photo.html">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "证件照在线制作（免费）",
+      "url": "https://13302164608.github.io/docs-tools/id-photo.html",
+      "description": "在浏览器里把普通照片裁成一寸、二寸、小二寸报名规格，替换白/蓝/红底色，调整 JPEG 质量并压到指定 KB，支持批量下载。",
+      "applicationCategory": "Productivity",
+      "operatingSystem": "Any",
+      "browserRequirements": "支持 Canvas 的现代浏览器（Chrome、Edge、Safari、Firefox）",
+      "isAccessibleForFree": true,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CNY"
+      },
+      "featureList": [
+        "一寸 295×413 / 二寸 413×579 / 小二寸 413×531",
+        "白底、蓝底、红底一键替换",
+        "JPEG 质量可调并显示最终 KB",
+        "可设目标大小（如 200KB 以内）",
+        "批量上传、逐张下载",
+        "照片本地处理，不上传"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "手机拍的照片能做证件照吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "能。正面、光线均匀、背景尽量干净（白墙更稳）的照片出图效果更稳定；背景杂乱的照片换底色后边缘会有瑕疵，建议重拍或找人精修。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "尺寸和报名系统要求不一致怎么办？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "一寸 295×413、二寸 413×579、小二寸 413×531 是报名常用像素规格，但各单位要求可能不同。以报名系统提示为准，选最接近的规格后核对像素和文件大小。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "换底色边缘有毛边正常吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "正常。这里用浏览器 Canvas 做简单的纯色背景替换，头发丝、阴影、花纹背景会有毛边。复杂背景建议人工精修，或者换一面干净白墙重拍。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "照片会上传吗？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "不会。裁剪、换底色、压缩全部在浏览器里用 Canvas 完成，页面没有上传接口，断网也能用。"
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+:root{--ink:#1f2328;--sub:#59636e;--line:#e6e8eb;--accent:#0b6bcb;--bg:#f7f8fa;--card:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,"Segoe UI","Microsoft YaHei",system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:840px;margin:0 auto;padding:0 20px}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:9}
+.nav{display:flex;align-items:center;justify-content:space-between;height:56px;gap:12px}
+.brand{font-weight:700;font-size:16px;text-decoration:none;color:var(--ink);white-space:nowrap}
+.nav nav{display:flex;gap:16px;flex-wrap:wrap}
+.nav a{color:var(--sub);text-decoration:none;font-size:14px}
+.nav a:hover{color:var(--accent)}
+main{padding:32px 0 10px}
+h1{font-size:28px;margin:0 0 8px;letter-spacing:-.4px}
+.lead{color:var(--sub);font-size:15px;margin:0 0 20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px}
+h2{font-size:19px;margin:36px 0 10px}
+p{font-size:15px}
+.drop{border:2px dashed #c9d3de;border-radius:12px;background:#fff;text-align:center;padding:24px 16px;cursor:pointer;transition:.15s}
+.drop.over{border-color:var(--accent);background:#eef5fd}
+.drop p{margin:0;font-size:14.5px;color:var(--sub)}
+.drop strong{color:var(--ink)}
+.hint{font-size:13px;color:#7a838d;margin-top:6px}
+.controls{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:12px}
+.field{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--sub)}
+.field select,.field input[type=number]{font:inherit;font-size:14px;padding:6px 9px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink)}
+.field input[type=range]{width:110px;accent-color:var(--accent)}
+.field input[type=number]{width:86px}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;text-decoration:none;padding:9px 18px;border-radius:8px;font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+.btn:hover{filter:brightness(.93)}
+.btn.ghost{background:#fff;color:var(--accent);border:1px solid var(--accent)}
+.btn.small{padding:4px 10px;font-size:12.5px}
+.btn:disabled{opacity:.45;cursor:not-allowed;filter:none}
+.status{font-size:14px;color:var(--sub);margin:12px 0 0;min-height:22px}
+.status.err{color:#b42318}
+.status.ok{color:#0a7a3d}
+.list{margin-top:14px;display:grid;gap:10px}
+.item{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.item img{width:44px;height:62px;object-fit:cover;border:1px solid var(--line);border-radius:4px;background:#f0f2f5;flex:none}
+.item .info{flex:1;min-width:0}
+.item .name{font-size:13.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.item .meta{font-size:12.5px;color:var(--sub)}
+.item .meta b{color:var(--ink)}
+.bad{color:#b42318}
+.good{color:#0a7a3d}
+.note{background:#fff;border-left:3px solid var(--accent);padding:14px 16px;border-radius:6px;font-size:14px;color:var(--sub);margin:18px 0}
+.warn{background:#fff8f0;border-left:3px solid #d97706;padding:14px 16px;border-radius:6px;font-size:14px;color:#7a4a12;margin:18px 0}
+.related{font-size:14px;color:var(--sub);margin-top:26px}
+.related a{color:var(--accent);text-decoration:none;margin-right:14px}
+.cta-box{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;margin:30px 0 0}
+.cta-box p{margin:0 0 12px;color:var(--sub);font-size:14.5px}
+.cta{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;padding:11px 22px;border-radius:8px;font-weight:600;font-size:15px}
+footer{border-top:1px solid var(--line);margin-top:44px;padding:24px 0 40px;color:var(--sub);font-size:13px}
+footer a{color:var(--sub)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media(max-width:600px){h1{font-size:22px}.nav nav{gap:12px}.nav a{font-size:12.5px}.brand{font-size:15px}.drop{padding:18px 12px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav">
+  <a class="brand" href="./">文档代做</a>
+  <nav><a href="./">首页</a><a href="templates.html">模板包</a><a href="index.html#free-tools">免费工具</a><a href="tools.html">Excel 速查</a></nav>
+</div></header>
+
+<main class="wrap">
+  <h1>证件照在线制作（一寸 / 二寸 / 小二寸）</h1>
+  <p class="lead">上传照片，自动裁成报名常用像素规格，一键换白 / 蓝 / 红底，JPEG 质量可调、可压到指定 KB，批量逐张下载。<strong>照片不上传</strong>，全部在浏览器里算。</p>
+
+  <div class="drop" id="drop" tabindex="0" role="button">
+    <p><strong>点击选择照片</strong>，或把照片拖到这里（可多选）</p>
+    <p class="hint">支持 JPG / PNG / WebP；正面、光线均匀、背景干净（白墙更稳）的照片出图效果更稳定</p>
+    <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" multiple class="sr" aria-label="选择照片">
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <div class="controls">
+      <label class="field">规格
+        <select id="sizeSel" aria-label="证件照规格">
+          <option value="295x413" selected>一寸 295×413</option>
+          <option value="413x579">二寸 413×579</option>
+          <option value="413x531">小二寸 413×531</option>
+        </select>
+      </label>
+      <label class="field">底色
+        <select id="bgSel" aria-label="底色">
+          <option value="#ffffff" selected>白底</option>
+          <option value="#438edb">蓝底</option>
+          <option value="#ff0000">红底</option>
+        </select>
+      </label>
+      <label class="field">质量
+        <input type="range" id="quality" min="50" max="95" step="1" value="88" aria-label="JPEG 质量">
+        <output id="qualityOut">88</output>
+      </label>
+      <label class="field">目标大小
+        <input type="number" id="maxKB" min="0" max="5000" step="10" placeholder="不限" aria-label="目标大小 KB"> KB
+      </label>
+      <button class="btn" id="runBtn" disabled>开始制作</button>
+      <button class="btn ghost" id="downloadAllBtn" disabled>全部下载</button>
+      <button class="btn ghost" id="clearBtn" type="button">清空</button>
+    </div>
+    <p class="status" id="status" aria-live="polite">还没有选择照片。</p>
+    <div class="list" id="list"></div>
+  </div>
+
+  <div class="warn">换底色用的是浏览器 Canvas 的简单纯色替换：白墙、单色背景效果好；头发丝、阴影、花纹背景会有毛边，<strong>复杂背景建议人工精修</strong>或换干净的墙重拍。</div>
+  <div class="note">照片不会离开你的电脑：裁剪、换底、压缩都在本地完成，页面没有上传接口，断网也能用。生成的是 JPEG，报名系统常见的 20KB-200KB 限制可以在「目标大小」里直接填。</div>
+
+  <h2>怎么用</h2>
+  <p>① 选照片（可多选）；② 选规格和底色；③ 质量默认 88 就够用，报名系统有大小限制就填目标 KB；④ 点「开始制作」，逐张下载或全部下载。想换规格重新点一次即可，原图不会被改。</p>
+
+  <h2>规格与尺寸的事实说明</h2>
+  <p>一寸证件照 295×413 像素、二寸 413×579 像素、小二寸 413×531 像素，是各类报名系统里最常见的三种像素规格。裁剪按比例居中裁切（不拉伸变形），所以原始照片只要能覆盖目标比例就不会被压扁。输出统一为 JPEG，质量越高体积越大，报名系统常见的限制是 20KB-200KB。</p>
+
+  <h2>常见问题</h2>
+  <h2>手机拍的照片能做证件照吗？</h2>
+  <p>能。正面、光线均匀、背景尽量干净（白墙更稳）的照片出图效果更稳定；背景杂乱的照片换底色后边缘会有瑕疵，建议重拍或找人精修。</p>
+
+  <h2>尺寸和报名系统要求不一致怎么办？</h2>
+  <p>一寸 295×413、二寸 413×579、小二寸 413×531 是报名常用像素规格，但各单位要求可能不同。以报名系统提示为准，选最接近的规格后核对像素和文件大小。</p>
+
+  <h2>换底色边缘有毛边正常吗？</h2>
+  <p>正常。这里用浏览器 Canvas 做简单的纯色背景替换，头发丝、阴影、花纹背景会有毛边。复杂背景建议人工精修，或者换一面干净白墙重拍。</p>
+
+  <h2>照片会上传吗？</h2>
+  <p>不会。裁剪、换底色、压缩全部在浏览器里用 Canvas 完成，页面没有上传接口，断网也能用。</p>
+
+  <div class="related">相关免费工具：<a href="job-filter.html">职位表筛选器</a><a href="compress.html">图片批量压缩</a><a href="pdf-merge.html">PDF 合并</a><a href="csv-json.html">CSV ⇄ JSON</a><a href="char-count.html">字数统计</a><a href="index.html#free-tools">全部工具</a></div>
+
+  <div class="cta-box">
+    <p>报名材料要一次备齐（证件照、报名表、学历证明 PDF），或者照片背景太复杂要精修？这些可以交给我做。</p>
+    <a class="cta" href="./index.html">需要帮你筛岗/整理材料？看服务与价格</a>
+  </div>
+</main>
+
+<footer class="wrap">
+  <p>文档代做 · 当天交付 ｜ <a href="./index.html">首页</a> · <a href="templates.html">模板包</a> · <a href="tools.html">Excel 速查</a></p>
+  <p>免费工具：<a href="job-filter.html">职位表筛选</a> · <a href="compress.html">图片压缩</a> · <a href="pdf-merge.html">PDF 合并</a> · <a href="csv-json.html">CSV ⇄ JSON</a> · <a href="char-count.html">字数统计</a></p>
+  <p>翔宇众成（天津）科技发展有限公司</p>
+</footer>
+
+<script>
+'use strict';
+/* ================= 图像处理核心（全局，便于自检） ================= */
+function hexToRgb(hex) {
+  var h = String(hex || '#ffffff').replace('#', '');
+  if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+  var n = parseInt(h, 16);
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+}
+function rgbToHex(r, g, b) {
+  function p(v) { var s = Math.max(0, Math.min(255, Math.round(v))).toString(16); return s.length === 1 ? '0' + s : s; }
+  return '#' + p(r) + p(g) + p(b);
+}
+function decodeImage(file) {
+  if (window.createImageBitmap) {
+    return createImageBitmap(file, { imageOrientation: 'from-image' }).then(function (bmp) {
+      return { drawable: bmp, width: bmp.width, height: bmp.height, close: function () { try { bmp.close(); } catch (e) {} } };
+    }).catch(function () { return decodeViaImg(file); });
+  }
+  return decodeViaImg(file);
+}
+function decodeViaImg(file) {
+  return new Promise(function (resolve, reject) {
+    var url = URL.createObjectURL(file);
+    var img = new Image();
+    img.onload = function () {
+      URL.revokeObjectURL(url);
+      resolve({ drawable: img, width: img.naturalWidth || img.width, height: img.naturalHeight || img.height, close: function () {} });
+    };
+    img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('无法读取这张照片')); };
+    img.src = url;
+  });
+}
+/* 按比例居中裁剪（cover），不拉伸 */
+function drawCover(ctx, drawable, targetW, targetH) {
+  var iw = drawable.width, ih = drawable.height;
+  var targetAspect = targetW / targetH;
+  var sw = iw, sh = ih, sx = 0, sy = 0;
+  if (iw / ih > targetAspect) {
+    sw = ih * targetAspect;
+    sx = (iw - sw) / 2;
+  } else {
+    sh = iw / targetAspect;
+    sy = (ih - sh) / 2;
+  }
+  ctx.drawImage(drawable, sx, sy, sw, sh, 0, 0, targetW, targetH);
+}
+/* 从四角 + 四边中点采样估计背景色 */
+function estimateBgColor(data, w, h) {
+  var n = 12;
+  var boxes = [
+    [0, 0], [w - n, 0], [0, h - n], [w - n, h - n],
+    [Math.floor(w / 2) - Math.floor(n / 2), 0],
+    [Math.floor(w / 2) - Math.floor(n / 2), h - n],
+    [0, Math.floor(h / 2) - Math.floor(n / 2)],
+    [w - n, Math.floor(h / 2) - Math.floor(n / 2)]
+  ];
+  var r = 0, g = 0, b = 0, count = 0;
+  for (var bi = 0; bi < boxes.length; bi++) {
+    var bx = Math.max(0, buffers(boxes[bi][0], w, n));
+    var by = Math.max(0, buffers(boxes[bi][1], h, n));
+    for (var y = by; y < Math.min(by + n, h); y++) {
+      for (var x = bx; x < Math.min(bx + n, w); x++) {
+        var i = (y * w + x) * 4;
+        r += data[i]; g += data[i + 1]; b += data[i + 2]; count++;
+      }
+    }
+  }
+  if (!count) return { r: 255, g: 255, b: 255 };
+  return { r: r / count, g: g / count, b: b / count };
+}
+function buffers(v, max, n) { return Math.min(v, Math.max(0, max - n)); }
+
+/* 纯色背景替换 + 边缘羽化；返回替换比例，便于判断背景是否复杂 */
+function replaceBackground(canvas, hex, tolerance) {
+  var ctx = canvas.getContext('2d');
+  var w = canvas.width, h = canvas.height;
+  var img = ctx.getImageData(0, 0, w, h);
+  var d = img.data;
+  var src = estimateBgColor(d, w, h);
+  var target = hexToRgb(hex);
+  var tol = tolerance || 70;
+  var changed = 0, total = d.length / 4;
+  for (var i = 0; i < d.length; i += 4) {
+    var dr = d[i] - src.r, dg = d[i + 1] - src.g, db = d[i + 2] - src.b;
+    var dist = Math.sqrt(dr * dr + dg * dg + db * db);
+    if (dist <= tol) {
+      d[i] = target.r; d[i + 1] = target.g; d[i + 2] = target.b; d[i + 3] = 255;
+      changed++;
+    } else if (dist <= tol * 1.6) {
+      var t = (dist - tol) / (tol * 0.6); /* 0=纯背景 1=原图 */
+      d[i] = Math.round(d[i] * t + target.r * (1 - t));
+      d[i + 1] = Math.round(d[i + 1] * t + target.g * (1 - t));
+      d[i + 2] = Math.round(d[i + 2] * t + target.b * (1 - t));
+      d[i + 3] = 255;
+      changed += 0.5;
+    }
+  }
+  ctx.putImageData(img, 0, 0);
+  return changed / total;
+}
+
+function encodeJpeg(canvas, quality) {
+  return new Promise(function (resolve, reject) {
+    canvas.toBlob(function (blob) {
+      if (!blob) { reject(new Error('浏览器不支持导出 JPEG')); return; }
+      resolve(blob);
+    }, 'image/jpeg', quality);
+  });
+}
+
+/* 核心：一张照片 → 指定规格 + 底色 + 质量/目标大小 */
+function processPhoto(file, opts) {
+  opts = opts || {};
+  var width = opts.width || 295, height = opts.height || 413;
+  var bg = opts.bg || '#ffffff';
+  var quality = Math.min(0.98, Math.max(0.3, opts.quality || 0.88));
+  var replace = opts.replaceBg !== false;
+  var maxKB = opts.maxKB || 0;
+  var tolerance = opts.tolerance || 70;
+  return decodeImage(file).then(function (src) {
+    try {
+      var canvas = document.createElement('canvas');
+      canvas.width = width; canvas.height = height;
+      var ctx = canvas.getContext('2d');
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = 'high';
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, width, height);
+      drawCover(ctx, src.drawable, width, height);
+      var replaced = 0;
+      if (replace) replaced = replaceBackground(canvas, bg, tolerance);
+      return encodeJpeg(canvas, quality).then(function (blob) {
+        if (!maxKB || blob.size <= maxKB * 1024) {
+          return { blob: blob, width: width, height: height, quality: quality, replaced: replaced, reached: !maxKB || blob.size <= maxKB * 1024 };
+        }
+        var lo = 0.3, hi = quality, fit = null, fitQ = 0, round = 0;
+        function step() {
+          if (round >= 8 || hi - lo < 0.02) return Promise.resolve();
+          round++;
+          var mid = (lo + hi) / 2;
+          return encodeJpeg(canvas, mid).then(function (b) {
+            if (b.size <= maxKB * 1024) { fit = b; fitQ = mid; lo = mid; } else { hi = mid; }
+            return step();
+          });
+        }
+        return step().then(function () {
+          if (fit) return { blob: fit, width: width, height: height, quality: fitQ, replaced: replaced, reached: true };
+          return { blob: blob, width: width, height: height, quality: quality, replaced: replaced, reached: false };
+        });
+      });
+    } finally { src.close(); }
+  });
+}
+
+/* ================= 界面 ================= */
+var drop = document.getElementById('drop');
+var fileInput = document.getElementById('fileInput');
+var sizeSel = document.getElementById('sizeSel');
+var bgSel = document.getElementById('bgSel');
+var quality = document.getElementById('quality');
+var qualityOut = document.getElementById('qualityOut');
+var maxKB = document.getElementById('maxKB');
+var runBtn = document.getElementById('runBtn');
+var downloadAllBtn = document.getElementById('downloadAllBtn');
+var clearBtn = document.getElementById('clearBtn');
+var statusEl = document.getElementById('status');
+var listEl = document.getElementById('list');
+var files = [];
+var results = [];
+
+function humanKB(bytes) { return (bytes / 1024).toFixed(1) + ' KB'; }
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className = 'status' + (kind ? ' ' + kind : '');
+}
+function parseSize(v) {
+  var parts = String(v).split('x');
+  return { width: parseInt(parts[0], 10), height: parseInt(parts[1], 10) };
+}
+function addFiles(fileList) {
+  var added = 0;
+  for (var i = 0; i < fileList.length; i++) {
+    var f = fileList[i];
+    if (!f.type || f.type.indexOf('image/') !== 0) continue;
+    files.push(f); added++;
+  }
+  if (added) {
+    runBtn.disabled = false;
+    setStatus('已选择 ' + files.length + ' 张照片，点「开始制作」。');
+  } else {
+    setStatus('没有识别到图片，请选择 JPG / PNG / WebP。', 'err');
+  }
+}
+drop.addEventListener('click', function () { fileInput.click(); });
+drop.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+['dragenter', 'dragover'].forEach(function (ev) {
+  drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add('over'); });
+});
+['dragleave', 'drop'].forEach(function (ev) {
+  drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove('over'); });
+});
+drop.addEventListener('drop', function (e) {
+  if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length) addFiles(e.dataTransfer.files);
+});
+fileInput.addEventListener('change', function () {
+  if (fileInput.files && fileInput.files.length) addFiles(fileInput.files);
+  fileInput.value = '';
+});
+quality.addEventListener('input', function () { qualityOut.value = quality.value; });
+clearBtn.addEventListener('click', function () {
+  results.forEach(function (r) { if (r.url) URL.revokeObjectURL(r.url); });
+  results = []; files = [];
+  listEl.innerHTML = '';
+  runBtn.disabled = true;
+  downloadAllBtn.disabled = true;
+  setStatus('已清空，重新选择照片即可。');
+  fileInput.value = '';
+});
+
+runBtn.addEventListener('click', function () {
+  if (!files.length) return;
+  results.forEach(function (r) { if (r.url) URL.revokeObjectURL(r.url); });
+  results = [];
+  listEl.innerHTML = '';
+  var size = parseSize(sizeSel.value);
+  var opts = {
+    width: size.width, height: size.height,
+    bg: bgSel.value,
+    quality: parseInt(quality.value, 10) / 100,
+    maxKB: parseInt(maxKB.value, 10) || 0
+  };
+  var batch = files.slice();
+  runBtn.disabled = true;
+  downloadAllBtn.disabled = true;
+  var done = 0, failed = 0;
+  setStatus('正在制作 0 / ' + batch.length + ' …');
+
+  function one(i) {
+    if (i >= batch.length) {
+      runBtn.disabled = false;
+      downloadAllBtn.disabled = !results.length;
+      setStatus('完成 ' + done + ' 张' + (failed ? '，失败 ' + failed + ' 张' : '') + '。逐张下载或点「全部下载」。', 'ok');
+      return;
+    }
+    var f = batch[i];
+    setStatus('正在制作 ' + (i + 1) + ' / ' + batch.length + '：' + f.name);
+    var row = document.createElement('div');
+    row.className = 'item';
+    var thumb = document.createElement('img');
+    thumb.alt = '预览';
+    var info = document.createElement('div');
+    info.className = 'info';
+    var nameEl = document.createElement('div');
+    nameEl.className = 'name';
+    nameEl.textContent = f.name;
+    nameEl.title = f.name;
+    var meta = document.createElement('div');
+    meta.className = 'meta';
+    meta.textContent = '处理中…';
+    info.appendChild(nameEl); info.appendChild(meta);
+    var act = document.createElement('div');
+    row.appendChild(thumb); row.appendChild(info); row.appendChild(act);
+    listEl.appendChild(row);
+
+    processPhoto(f, opts).then(function (res) {
+      done++;
+      var url = URL.createObjectURL(res.blob);
+      var outName = f.name.replace(/\.[^.]+$/, '') + '-' + opts.width + 'x' + opts.height + '.jpg';
+      results.push({ url: url, name: outName, blob: res.blob });
+      thumb.src = url;
+      meta.innerHTML = '<b>' + humanKB(res.blob.size) + '</b> · ' + res.width + '×' + res.height +
+        ' · 质量 ' + Math.round(res.quality * 100) +
+        (opts.maxKB ? (res.reached ? ' · <span class="good">已达目标</span>' : ' · <span class="bad">未达目标</span>') : '');
+      var a = document.createElement('a');
+      a.className = 'btn small';
+      a.href = url;
+      a.download = outName;
+      a.textContent = '下载';
+      act.appendChild(a);
+      downloadAllBtn.disabled = false;
+    }).catch(function (err) {
+      failed++;
+      meta.innerHTML = '<span class="bad">失败：' + (err && err.message ? err.message : '处理失败') + '</span>';
+    }).then(function () {
+      return new Promise(function (r) { setTimeout(r, 0); });
+    }).then(function () { one(i + 1); });
+  }
+  one(0);
+});
+
+downloadAllBtn.addEventListener('click', function () {
+  if (!results.length) return;
+  setStatus('开始下载 ' + results.length + ' 张；若浏览器询问「允许下载多个文件」请选择允许。');
+  results.forEach(function (r, idx) {
+    setTimeout(function () {
+      var a = document.createElement('a');
+      a.href = r.url; a.download = r.name;
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    }, idx * 350);
+  });
+});
+</script>
+</body>
+</html>
